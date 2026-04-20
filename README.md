@@ -9,7 +9,7 @@
 Claude Code에 아래 프롬프트를 복사해서 붙여넣으세요.
 
 ```
-/template/github_showcase_pr_prompt.md 파일의 지시사항을 따라서 작업을 진행해줘.
+https://github.com/arin-ship-it/lk-ai-camp2-biz-showcase 레포를 clone하고 해당 폴더로 이동한 뒤, /template/github_showcase_pr_prompt.md 파일의 지시사항을 따라서 작업을 진행해줘.
 ```
 
 ---
