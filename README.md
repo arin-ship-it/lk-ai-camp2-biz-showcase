@@ -9,12 +9,7 @@
 Claude Code에 아래 프롬프트를 복사해서 붙여넣으세요.
 
 ```
-https://github.com/arin-ship-it/lk-ai-camp2-biz-showcase 레포를 clone하고,
-내 영문이름/showcase 브랜치를 만들어줘.
-submissions/내영어이름/ 폴더에 template/SHOWCASE.md를 복사하고,
-나를 채우는 걸 도와줘.
-다 끝나면 커밋하고 PR 만들어줘.
-PR 완료되면, PR 올라간 링크도 제시해줘.
+/template/github_showcase_pr_prompt.md 파일의 지시사항을 따라서 작업을 진행해줘.
 ```
 
 ---
