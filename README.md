@@ -9,7 +9,7 @@
 Claude Code에 아래 프롬프트를 복사해서 붙여넣으세요.
 
 ```
-lk-ai-camp2-biz-showcase 레포를 clone하고,
+https://github.com/arin-ship-it/lk-ai-camp2-biz-showcase 레포를 clone하고,
 내 영문이름/showcase 브랜치를 만들어줘.
 submissions/내영어이름/ 폴더에 template/SHOWCASE.md를 복사하고,
 나를 채우는 걸 도와줘.
