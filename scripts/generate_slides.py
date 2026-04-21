@@ -7,6 +7,45 @@ submissions/*/SHOWCASE.md 를 읽어 Marp 슬라이드 마크다운을 생성하
 
 사전 설치 (PDF 변환용):
     npm install -g @marp-team/marp-cli
+
+<!--
+<slide-design-guidelines>
+
+  <color-chip confirmed="true">
+    <background>#FFFCF2</background>       <!-- Orchid White -->
+    <dark-primary>#252422</dark-primary>   <!-- Warm Black -->
+    <dark-secondary>#403D39</dark-secondary> <!-- Masala -->
+    <accent>#e07a5f</accent>              <!-- Main — 구조 요소에만 사용 -->
+    <sub>#CCC5B9</sub>                    <!-- Chrome White -->
+  </color-chip>
+
+  <layout>
+    <rule>표·비교표·플로우는 콘텐츠 영역 전체 너비 사용</rule>
+    <rule>2컬럼 비율: 텍스트+표 = 38:62 / 비교 3열 = 42:16:42</rule>
+    <rule>콘텐츠가 상단에 몰리지 않도록 수직 여백 균형 유지</rule>
+    <reference-layouts>표 / 비교 / 순서(화살표) / 안내문(구분선)</reference-layouts>
+  </layout>
+
+  <content>
+    <rule>줄글 지양 — 표·비교·플로우·구분선 항목으로 시각화 우선</rule>
+    <rule>단계형 → 화살표 플로우 / 비교형 → 3열 비교표 / 목록형 → 표</rule>
+    <rule>슬라이드 1장당 핵심 메시지 1개</rule>
+  </content>
+
+  <emphasis>
+    <rule>강조는 bold(font-weight:900) 위주</rule>
+    <rule>accent 컬러는 h2 라벨·플로우 마지막 단계·비교표 헤더·태그 뱃지에만 사용</rule>
+    <rule>본문 텍스트에 accent 컬러 남발 금지</rule>
+  </emphasis>
+
+  <structure>
+    <rule>헤더바(회사명 좌 / 페이지번호 우) + 하단 다크 블록 코너 일관 적용</rule>
+    <rule>커버: 제목 + 발표자 정보 + 키워드 태그 뱃지</rule>
+    <rule>디바이더: dark 배경 섹션 구분 슬라이드</rule>
+  </structure>
+
+</slide-design-guidelines>
+-->
 """
 
 import re
@@ -243,8 +282,12 @@ def build_presentation(persons: list[tuple[str, dict]]) -> str:
     chunks.append("<!-- _class: divider -->\n\n# 우리가 만든 것들")
 
     for name, sections in persons:
-        for slide in slides_for_person(name, sections):
-            chunks.append(slide)
+        slides = slides_for_person(name, sections)
+        # 첫 슬라이드 앞에 시작 마커 삽입
+        slides[0] = f"<!-- === 발표자: {name} === -->\n\n{slides[0]}"
+        # 마지막 슬라이드 뒤에 종료 마커 삽입
+        slides[-1] = f"{slides[-1]}\n\n<!-- === /발표자: {name} === -->"
+        chunks.extend(slides)
 
     return "\n\n---\n\n".join(chunks) + "\n"
 
