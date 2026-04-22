@@ -143,21 +143,45 @@ style: |
 
 # Arin — 현재 구현 단계
 
-1) 디자인 진행 상황 리스트업 & 정리
-- 5단계 워크플로우 설계 (수집 → 필터 → Human Review → Figma 플러그인 (페이지 생성) → Notion에 내용 정리 완료)
-- 수집 스케줄: 월~금 9, 10, 11, 13, 14, 15, 16, 17, 18, 19시 정각 (오후 12시, 아린 연차 날 제외)
-- 1차, 2차 시안 공유와 같은 Work Flow 날짜 자동 계산해서 작성
-- 미완료 Task 자동 이월 로직
+<p style="color:#CCC5B9; font-size:0.82em; margin:-0.6em 0 0.7em;">자동화 전·후 비교</p>
 
-2) 디자인 타임라인 정리
+<div style="display:flex; gap:3px; margin-bottom:0.9em; font-size:0.68em;">
+<div style="flex:1; background:#CCC5B9; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%); padding:8px 14px 8px 10px; color:#403D39; text-align:center;"><div style="font-size:0.75em; font-weight:700; opacity:0.6; margin-bottom:2px;">01</div><div style="font-weight:700;">수집</div></div>
+<div style="flex:1; background:#CCC5B9; clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%,10px 50%); padding:8px 14px 8px 16px; color:#403D39; text-align:center;"><div style="font-size:0.75em; font-weight:700; opacity:0.6; margin-bottom:2px;">02</div><div style="font-weight:700;">필터</div></div>
+<div style="flex:1; background:#CCC5B9; clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%,10px 50%); padding:8px 14px 8px 16px; color:#403D39; text-align:center;"><div style="font-size:0.75em; font-weight:700; opacity:0.6; margin-bottom:2px;">03</div><div style="font-weight:700;">Human<br>Review</div></div>
+<div style="flex:1; background:#403D39; clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%,10px 50%); padding:8px 14px 8px 16px; color:#fff; text-align:center;"><div style="font-size:0.75em; font-weight:700; opacity:0.7; margin-bottom:2px;">04</div><div style="font-weight:700;">Figma<br>플러그인</div></div>
+<div style="flex:1; background:#e07a5f; clip-path:polygon(10px 0,100% 0,100% 100%,0 100%,10px 50%); padding:8px 14px 8px 16px; color:#fff; text-align:center;"><div style="font-size:0.75em; font-weight:700; opacity:0.8; margin-bottom:2px;">05</div><div style="font-weight:700;">Notion<br>정리</div></div>
+</div>
+
+<table>
+<thead><tr>
+<th>기존 방식</th>
+<th style="background:#CCC5B9; color:#403D39; text-align:center; width:12%;">구분</th>
+<th>자동화 후</th>
+</tr></thead>
+<tbody>
+<tr><td>4개 채널 각각 수동 확인 (~30분/주)</td><td style="text-align:center; font-weight:700; color:#403D39;">수집</td><td>월~금 9~19시 매시 정각 자동 수집</td></tr>
+<tr><td>요청 형식 불통일 → 정보 재확인 필요</td><td style="text-align:center; font-weight:700; color:#403D39;">정제</td><td>필터 + Human Review 단계로 정리</td></tr>
+<tr><td>전주 Task 수동 복제·수정 반복</td><td style="text-align:center; font-weight:700; color:#403D39;">이월</td><td>미완료 Task 자동 이월</td></tr>
+<tr><td>시안 공유 날짜 수동 계산</td><td style="text-align:center; font-weight:700; color:#403D39;">날짜</td><td>1차·2차 시안 날짜 자동 산출</td></tr>
+</tbody>
+</table>
 
 ---
 
 # Arin — 추후 과제 & 소감
 
-## ⑤ 추후 과제
-추가적인 디자인 피드백 사항도 자동 취합해서 정리되도록 구현
+<p style="color:#CCC5B9; font-size:0.82em; margin:-0.6em 0 1em;">앞으로 발전시키고 싶은 것, 그리고 이번 캠프를 통해 달라진 것</p>
 
-> ⑥ 아직도 기본적인 개념에 대한 확립이 미흡하다고는 생각하지만, 그럼에도 불구하고 이런 나도 자동화 도구를 만들 수 있다는 뿌듯한 경험을 했습니다. 클로드는 내가 만들고자 하는 뚜렷한 작업 플로우와 디테일한 조건만 잘 제시해준다면 누구나 쉽게 만들 수 있겠다는 가능성도 체감할 수 있었습니다.
+<p style="color:#e07a5f; font-size:0.78em; font-weight:700; margin:0 0 0.3em;">⑤ 추후 과제</p>
+
+디자인 **피드백 사항**도 자동 취합하여 Notion 정리까지 이어지도록 확장
+
+<hr style="border:none; border-top:1px solid #CCC5B9; margin:0.9em 0;">
+
+<p style="color:#e07a5f; font-size:0.78em; font-weight:700; margin:0 0 0.3em;">⑥ 소감</p>
+
+**"이런 나도 자동화 도구를 만들 수 있다"**는 뿌듯한 경험이었습니다.
+클로드는 뚜렷한 작업 플로우와 디테일한 조건만 잘 제시하면 누구나 쉽게 만들 수 있겠다는 가능성을 체감했습니다.
 
 <!-- === /발표자: Arin === -->
