@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+
+/* ─── 디자인 토큰 ─────────────────────────────── */
+section {
+  /* 팔레트 */
+  --c-cream:       #fdf8ec;
+  --c-cream-band:  #ece7da;
+  --c-cream-soft:  #e5ddd0;
+  --c-ink:         #252422;
+  --c-ink-deep:    #1a1917;
+  --c-ink-mid:     #403D39;
+  --c-ink-dim:     #999999;
+  --c-ink-muted:   #888888;
+  --c-line:        #CCC5B9;
+  --c-accent:      #e07a5f;
+  --c-accent-soft: rgba(224,122,95,0.10);
+
+  /* 테마 (기본 = 라이트) */
+  --c-bg:        var(--c-cream);
+  --c-fg:        var(--c-ink);
+  --c-band-bg:   var(--c-cream-band);
+  --c-band-fg:   rgba(37,36,34,0.62);
+  --c-footer-fg: rgba(37,36,34,0.42);
+  --c-corner:    var(--c-ink);
+
+  /* 레이아웃 */
+  --pad-x:       72px;
+  --pad-top:     72px;
+  --pad-bot:     56px;
+  --band-h:      38px;
+  --corner-size: 52px;
+}
+
+/* ─── 다크/디바이더 테마 토큰 재정의 ─────────── */
+section.dark, section.divider {
+  --c-bg:        var(--c-ink);
+  --c-fg:        #ffffff;
+  --c-band-bg:   var(--c-ink-deep);
+  --c-band-fg:   rgba(255,255,255,0.72);
+  --c-footer-fg: rgba(255,255,255,0.35);
+  --c-corner:    var(--c-accent);
+}
+
+/* ─── 기본 섹션 ─────────────────────────────── */
+section {
+  background: var(--c-bg);
+  color: var(--c-fg);
+  font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  padding: var(--pad-top) var(--pad-x) var(--pad-bot);
+  font-size: 20px;
+  line-height: 1.65;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+section.divider { justify-content: center; }
+section.cover   { justify-content: center; align-items: center; text-align: center; }
+
+/* ─── 헤더바 (Marp <header>) ─────────────────── */
+header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: var(--band-h);
+  margin: 0;
+  background: var(--c-band-bg);
+  color: var(--c-band-fg);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: var(--band-h);
+  padding: 0 20px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+}
+header strong {
+  font-weight: 700;
+  color: var(--c-band-fg);
+  margin-right: 4px;
+}
+
+/* ─── 페이지 번호 (Marp pagination) ─────────── */
+section::after {
+  position: absolute;
+  top: 0; right: 20px;
+  height: var(--band-h);
+  line-height: var(--band-h);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--c-footer-fg);
+  background: transparent;
+}
+
+/* ─── 푸터 + 코너 스퀘어 ────────────────────── */
+.slide-footer {
+  position: absolute;
+  bottom: 16px; left: 24px;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--c-footer-fg);
+}
+.corner-sq {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: var(--corner-size);
+  height: var(--corner-size);
+  background: var(--c-corner);
+}
+
+/* ─── 타이포 ──────────────────────────────────── */
+h1 {
+  font-size: 1.75em;
+  font-weight: 900;
+  line-height: 1.15;
+  margin: 0 0 0.15em;
+  color: inherit;
+}
+h2 {
+  font-size: 0.95em;
+  font-weight: 700;
+  margin: 0.8em 0 0.2em;
+  letter-spacing: -0.01em;
+  color: inherit;
+}
+strong { font-weight: 900; color: inherit; }
+
+.slide-sub {
+  font-size: 0.72em;
+  color: var(--c-ink-dim);
+  margin: 0 0 1em;
+  line-height: 1.4;
+}
+
+.sec-label {
+  color: var(--c-accent);
+  font-size: 0.72em;
+  font-weight: 700;
+  margin: 0.9em 0 0.25em;
+}
+.sec-label:first-child { margin-top: 0; }
+
+.sec-divider {
+  border: none;
+  border-top: 1px solid var(--c-line);
+  margin: 0.7em 0;
+}
+
+/* ─── 인용구 ─────────────────────────────────── */
+blockquote {
+  background: var(--c-accent-soft);
+  border-left: 4px solid var(--c-accent);
+  padding: 10px 16px;
+  margin: 10px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.88em;
+  color: #555;
+  font-style: normal;
+}
+blockquote p { margin: 0; }
+
+/* ─── 목록 ───────────────────────────────────── */
+ul, ol { padding-left: 1.3em; margin: 0.2em 0; }
+li { margin-bottom: 0.28em; }
+
+/* ─── 커버 슬라이드 ──────────────────────────── */
+.cover-title {
+  font-size: 2.3em;
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--c-ink);
+  margin: 0 0 0.4em;
+}
+.cover-presenter {
+  font-size: 0.8em;
+  color: var(--c-ink-muted);
+  margin: 0 0 1.2em;
+}
+.cover-presenter strong { color: var(--c-ink); font-weight: 700; }
+.cover-tags {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.tag {
+  display: inline-block;
+  border: 1.5px solid var(--c-accent);
+  background: var(--c-accent-soft);
+  color: var(--c-accent);
+  font-size: 0.68em;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 999px;
+}
+
+/* ─── 2열 레이아웃 (문제 슬라이드) ──────────── */
+.two-col {
+  display: flex;
+  gap: 48px;
+  flex: 1;
+  min-height: 0;
+}
+.col-l, .col-r { flex: 1; display: flex; flex-direction: column; }
+
+/* ─── 기본 표 ────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82em;
+  margin-top: 0.3em;
+}
+th {
+  background: var(--c-ink-mid);
+  color: #fff;
+  padding: 9px 14px;
+  text-align: left;
+  font-weight: 700;
+}
+th:last-child { background: var(--c-accent); }
+td {
+  padding: 8px 14px;
+  border-bottom: 1px solid #e0d8cc;
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+
+/* ─── 펜타곤 플로우 (구현 슬라이드) ─────────── */
+.flow-wrap {
+  display: flex;
+  height: 68px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+.flow-step {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 8px 0 20px;
+  margin-right: -14px;
+  color: #fff;
+  font-size: 0.6em;
+  font-weight: 700;
+  line-height: 1.35;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%);
+}
+.flow-step:first-child {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+  padding-left: 14px;
+}
+.flow-step:last-child {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 14px 50%);
+  margin-right: 0;
+}
+.flow-step:nth-child(1) { background: #d6cfca; color: var(--c-ink-mid); z-index: 5; }
+.flow-step:nth-child(2) { background: #c4bdb7; color: var(--c-ink-mid); z-index: 4; }
+.flow-step:nth-child(3) { background: #a09890; z-index: 3; }
+.flow-step:nth-child(4) { background: var(--c-ink-mid); z-index: 2; }
+.flow-step:nth-child(5) { background: var(--c-accent); z-index: 1; }
+.flow-num {
+  font-size: 0.85em;
+  font-weight: 400;
+  opacity: 0.75;
+  margin-bottom: 2px;
+}
+
+/* ─── 비교표 (구현 슬라이드) ────────────────── */
+.cmp-table { width: 100%; border-collapse: collapse; font-size: 0.78em; }
+.cmp-table th { padding: 10px 14px; text-align: center; font-weight: 700; font-size: 0.9em; }
+.cmp-table th.h-left  { background: var(--c-ink-mid); color: #fff; }
+.cmp-table th.h-mid   { background: var(--c-line); color: var(--c-ink); width: 16%; font-size: 0.8em; }
+.cmp-table th.h-right { background: var(--c-accent); color: #fff; }
+.cmp-table td {
+  padding: 9px 14px;
+  text-align: center;
+  color: var(--c-ink-mid);
+  border-bottom: 1px solid #ddd5c8;
+  vertical-align: middle;
+}
+.cmp-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+.cmp-table td.m-mid { background: #ebe5de; color: var(--c-ink-muted); font-size: 0.82em; }
