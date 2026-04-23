@@ -312,7 +312,7 @@ style: |
 <!-- _class: cover -->
 
 <div class="cover-title">Evan의<br>자동화 도구</div>
-<p class="cover-presenter"><strong>발표자</strong> 콘텐츠 디자이너 &nbsp;｜&nbsp; Evan</p>
+<p class="cover-presenter"><strong>발표자</strong> 세일즈 매니저 &nbsp;｜&nbsp; Evan</p>
 <div class="cover-tags"><span class="tag">신규 고객 온보딩 자동화</span><span class="tag">신규 온보딩 자동화: 미진행</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -357,7 +357,7 @@ style: |
 <!-- _class: cover -->
 
 <div class="cover-title">Chaeeun Jang의<br>자동화 도구</div>
-<p class="cover-presenter"><strong>발표자</strong> 콘텐츠 디자이너 &nbsp;｜&nbsp; Chaeeun Jang</p>
+<p class="cover-presenter"><strong>발표자</strong> 그로우 매니저 &nbsp;｜&nbsp; Chaeeun Jang</p>
 <div class="cover-tags"><span class="tag">매일 상시퍼널 클래스의 신청자 목</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -402,7 +402,7 @@ style: |
 <!-- _class: cover -->
 
 <div class="cover-title">mjshin의<br>자동화 도구</div>
-<p class="cover-presenter"><strong>발표자</strong> 콘텐츠 디자이너 &nbsp;｜&nbsp; mjshin</p>
+<p class="cover-presenter"><strong>발표자</strong> 그로우 매니저 &nbsp;｜&nbsp; mjshin</p>
 <div class="cover-tags"><span class="tag">매니저 1명이 담당 가능한 고객사</span><span class="tag">3단계 자동화 워크플로우</span><span class="tag">질문 플로우 설계: 매니저 킥오프 인</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -452,7 +452,7 @@ style: |
 <!-- _class: cover -->
 
 <div class="cover-title">Nova의<br>자동화 도구</div>
-<p class="cover-presenter"><strong>발표자</strong> 콘텐츠 디자이너 &nbsp;｜&nbsp; Nova</p>
+<p class="cover-presenter"><strong>발표자</strong> 그로우 매니저 &nbsp;｜&nbsp; Nova</p>
 <div class="cover-tags"><span class="tag">단계마다 이전 히스토리를 직접 찾</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 

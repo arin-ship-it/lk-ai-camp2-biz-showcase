@@ -25,6 +25,22 @@ OUTPUT_MD       = SLIDES_DIR / "showcase.md"
 OUTPUT_PDF      = SLIDES_DIR / "showcase.pdf"
 THEME_CSS_PATH  = SLIDES_DIR / "theme.css"
 
+# 발표자별 직무 매핑 (name은 소문자로 비교)
+# 새 발표자 추가 시 여기에 등록하세요.
+ROLE_BY_NAME = {
+    "chaeeun jang": "그로우 매니저",
+    "mjshin":       "그로우 매니저",
+    "nova":         "그로우 매니저",
+    "evan":         "세일즈 매니저",
+    "brian":        "세일즈 컨설턴트",
+}
+DEFAULT_ROLE = "콘텐츠 디자이너"
+
+
+def role_for(name: str) -> str:
+    return ROLE_BY_NAME.get(name.strip().lower(), DEFAULT_ROLE)
+
+
 TEMPLATE_HINTS = [
     "어떤 업무에서 불편함이나 비효율을",
     "반복적으로 하던 작업, 시간이 오래 걸리던",
@@ -196,7 +212,7 @@ def slide_cover(name: str, s: dict) -> str:
     return (
         f"<!-- _class: cover -->\n\n"
         f'<div class="cover-title">{name}의<br>자동화 도구</div>\n'
-        f'<p class="cover-presenter"><strong>발표자</strong> 콘텐츠 디자이너 &nbsp;｜&nbsp; {name}</p>\n'
+        f'<p class="cover-presenter"><strong>발표자</strong> {role_for(name)} &nbsp;｜&nbsp; {name}</p>\n'
         + (f'<div class="cover-tags">{tags_html}</div>\n' if tags_html else "")
         + FOOTER_HTML
     )
