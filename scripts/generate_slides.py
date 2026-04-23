@@ -33,12 +33,31 @@ ROLE_BY_NAME = {
     "nova":         "그로우 매니저",
     "evan":         "세일즈 매니저",
     "brian":        "세일즈 컨설턴트",
+    "bryan":        "세일즈 매니저",
 }
 DEFAULT_ROLE = "콘텐츠 디자이너"
+
+# 발표자별 커버 태그 오버라이드 (지정 시 자동 추출 대신 이 값을 사용)
+TAGS_BY_NAME = {
+    "bryan": ["고객사 정보 조사 자동화"],
+}
+
+# 발표자별 "현재 구현 단계" 비교표의 '기존 방식' 오버라이드
+CMP_OLD_BY_NAME = {
+    "bryan": ["고객사 정보 수동 수집", "스크립트 작성", "노션에 수동 저장"],
+}
 
 
 def role_for(name: str) -> str:
     return ROLE_BY_NAME.get(name.strip().lower(), DEFAULT_ROLE)
+
+
+def tags_override_for(name: str):
+    return TAGS_BY_NAME.get(name.strip().lower())
+
+
+def cmp_old_override_for(name: str):
+    return CMP_OLD_BY_NAME.get(name.strip().lower())
 
 
 TEMPLATE_HINTS = [
@@ -191,20 +210,24 @@ def slide_cover(name: str, s: dict) -> str:
     proj_short = project[:30] + ("…" if len(project) > 30 else "")
 
     # pill 뱃지 키워드 추출
-    tags = []
-    if s4:
-        flow_m = re.search(r'[（(]([^）)\n]+(?:→[^）)\n]+)+)[）)]', s4)
-        if flow_m:
-            steps = [st.strip() for st in flow_m.group(1).split('→') if st.strip()]
-            tags.append(f"{len(steps)}단계 자동화 워크플로우")
-        items4 = parse_list_items(s4)
-        non_flow = [it for it in items4 if '→' not in it]
-        if non_flow:
-            tags.append(non_flow[0][:20])
-    if s1 and "30분" in s1:
-        tags.insert(0, "주 30분 → 0분")
-    elif s1:
-        tags.insert(0, first_sentence(s1)[:18])
+    override = tags_override_for(name)
+    if override is not None:
+        tags = list(override)
+    else:
+        tags = []
+        if s4:
+            flow_m = re.search(r'[（(]([^）)\n]+(?:→[^）)\n]+)+)[）)]', s4)
+            if flow_m:
+                steps = [st.strip() for st in flow_m.group(1).split('→') if st.strip()]
+                tags.append(f"{len(steps)}단계 자동화 워크플로우")
+            items4 = parse_list_items(s4)
+            non_flow = [it for it in items4 if '→' not in it]
+            if non_flow:
+                tags.append(non_flow[0][:20])
+        if s1 and "30분" in s1:
+            tags.insert(0, "주 30분 → 0분")
+        elif s1:
+            tags.insert(0, first_sentence(s1)[:18])
 
     tags = tags[:3]
     tags_html = ''.join(f'<span class="tag">{t}</span>' for t in tags)
@@ -323,6 +346,11 @@ def slide_impl(name: str, s: dict) -> str:
         # (플로우 펜타곤과 일부 시각적 중복이 있을 수 있으나 행 누락보단 낫다)
         old_items = parse_list_items(s2)
         new_items = items4_all
+
+    # 발표자별 기존 방식 오버라이드
+    override_old = cmp_old_override_for(name)
+    if override_old is not None:
+        old_items = list(override_old)
 
     # 펜타곤 플로우
     if flow_steps:

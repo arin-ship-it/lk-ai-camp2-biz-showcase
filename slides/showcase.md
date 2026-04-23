@@ -298,11 +298,56 @@ style: |
 -->
 
 <!-- _class: divider -->
-<!-- _header: "**EVAN** · LK AI Camp 2기" -->
+<!-- _header: "**BRYAN** · LK AI Camp 2기" -->
 
 # 우리가 만든 것들
 
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+<!-- header: "**BRYAN** · LK AI Camp 2기" -->
+<!-- === 발표자: Bryan === -->
+
+<!-- _class: cover -->
+
+<div class="cover-title">Bryan의<br>자동화 도구</div>
+<p class="cover-presenter"><strong>발표자</strong> 세일즈 매니저 &nbsp;｜&nbsp; Bryan</p>
+<div class="cover-tags"><span class="tag">고객사 정보 조사 자동화</span></div>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+# 문제와 해결 방향
+<p class="slide-sub">고객사 정보가 리드 조사 시점과 실제 컨택 시점 사이에 달라질 수 있어, 컨택 직전에 최신화가 필요했다.</p>
+
+<div class="two-col">
+  <div class="col-l"><p class="sec-label">① 문제 상황</p><ol><li>고객사 정보가 리드 조사 시점과 실제 컨택 시점 사이에 달라질 수 있어, 컨택 직전에 최신화가 필요했다.</li><li>고객사 정보를 찾는 데 드는 시간이 커서 이 리소스를 줄일 필요가 있었다.</li><li>들어온 지 얼마 되지 않은 시점에는 안정적인 스크립트 톤으로 처음 응대하고, 익숙해진 뒤에는 자유롭게 소통하는 여정을 감안했을 때 필요한 과정이라고 판단했다. 동시에 추후 신입 교육 자료의 토대로도 쓰일 수 있다고 보아, 세일즈 온보딩 자료에 활용할 수 있겠다고 판단했다.</li></ol><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><ul><li>단순 작업에 드는 리소스를 줄이고,</li><li>스크립트를 통해 고객 컨택 응대를 안정화한 뒤,</li><li>이후 같은 스크립트·절차를 신입 교육 자료로 활용할 수 있도록 만들고 싶었다.</li></ul></div>
+  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><p>서현님 리드 확인, 그리고 고객 컨택 전 구글링 작업을 진행하는 과정에서 리소스 소모가 컸다.</p></div>
+</div>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+# 현재 구현 단계
+<p class="slide-sub">자동화 전·후 비교</p>
+
+<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>고객사 정보 수동 수집</td><td class="m-mid">비교</td><td>인스타그램·유튜브 외의 고객사 정보를 구글링으로 자동 수집.</td></tr><tr><td>스크립트 작성</td><td class="m-mid">비교</td><td>해당 컨택이 디스커버리 콜인지 라이징 컨택 콜인지 판단한 뒤, 그에 맞는 스크립트를 자동으로 뽑아준…</td></tr><tr><td>노션에 수동 저장</td><td class="m-mid">비교</td><td>생성된 스크립트는 노션 페이지에 자동으로 아카이빙된다.</td></tr></tbody></table>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+# 추후 과제 &amp; 소감
+<p class="slide-sub">앞으로 발전시키고 싶은 것, 그리고 이번 캠프를 통해 달라진 것</p>
+
+<p class="sec-label">⑤ 추후 과제</p>
+<ul><li>백오피스 및 구글 시트 데이터를 끌어올 수 있는 방안을 찾아보기. 현재 시점에서는 어떻게 할 수 있는지 아직 모르겠다.</li></ul>
+<hr class="sec-divider">
+<p class="sec-label">⑥ 소감</p>
+<ul><li>업무를 스킬화하는 데 꽤 많은 토큰이 소모되어, 더 효율적으로 스킬화할 수 있는 방안을 찾아보면 좋을 것 같다는 생각이 들었다.</li><li>실제로 업무에 활용 가능한 스킬인지는 실무 투입이 된 지 얼마 지나지 않아 명확히 판단하기 어렵다. 업무를 진행하면서 스킬을 조금 더 고도화시킬 필요가 있다고 느꼈다.</li></ul>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+<!-- === /발표자: Bryan === -->
 
 ---
 
