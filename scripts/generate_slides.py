@@ -302,15 +302,14 @@ def _split_top_level_arrow(text: str):
     return None
 
 
-def slide_impl(name: str, s: dict) -> str:
-    """현재 구현 단계: 펜타곤 플로우 + 비교표"""
+def _build_impl_content(s: dict) -> tuple:
+    """현재 구현 단계 flow_html, cmp_html 반환 (slide_impl / slide_impl_with_image 공유)."""
     s2 = s.get("②", "")
     s4 = s.get("④", "")
 
     flow_steps = extract_flow_steps(s4)
     items4_all = parse_list_items(s4)
 
-    # ④ 에 "기존 → 자동화" 형태(괄호 밖 →)의 쌍 불릿이 있으면 비교표로 사용
     cmp_pairs = []
     for it in items4_all:
         if _has_top_level_arrow(it):
@@ -318,18 +317,13 @@ def slide_impl(name: str, s: dict) -> str:
             if pair:
                 cmp_pairs.append(pair)
 
-    # 모든 ④ 불릿이 "기존 → 자동화" 쌍일 때만 cmp_pairs 모드 사용
-    # (일부만 화살표면 의도 모호 → 레거시로)
     if cmp_pairs and len(cmp_pairs) == len(items4_all):
         old_items = [p[0] for p in cmp_pairs]
         new_items = [p[1] for p in cmp_pairs]
     else:
-        # 레거시 경로: ② 불릿 = 기존, ④ 전체 불릿 = 자동화 후
-        # (플로우 펜타곤과 일부 시각적 중복이 있을 수 있으나 행 누락보단 낫다)
         old_items = parse_list_items(s2)
         new_items = items4_all
 
-    # 펜타곤 플로우
     if flow_steps:
         flow_divs = ""
         for i, step in enumerate(flow_steps):
@@ -338,7 +332,6 @@ def slide_impl(name: str, s: dict) -> str:
     else:
         flow_html = ""
 
-    # 비교표
     n = max(len(old_items), len(new_items), 1)
     while len(old_items) < n: old_items.append("—")
     while len(new_items) < n: new_items.append("—")
@@ -367,11 +360,32 @@ def slide_impl(name: str, s: dict) -> str:
         f'</table>'
     ) if old_items and new_items else md_to_html(fallback(s4))
 
+    return flow_html, cmp_html
+
+
+def slide_impl(name: str, s: dict) -> str:
+    """현재 구현 단계: 펜타곤 플로우 + 비교표"""
+    flow_html, cmp_html = _build_impl_content(s)
     return (
         f'# 현재 구현 단계\n'
         f'<p class="slide-sub">자동화 전·후 비교</p>\n\n'
         + flow_html
         + cmp_html + "\n"
+        + FOOTER_HTML
+    )
+
+
+def slide_impl_with_image(name: str, s: dict, img_rel_path: str) -> str:
+    """현재 구현 단계 + 오른쪽 이미지 (2열 레이아웃) — slide_img*.png 자동 생성용."""
+    flow_html, cmp_html = _build_impl_content(s)
+    return (
+        f'# 현재 구현 단계\n'
+        f'<p class="slide-sub">자동화 전·후 비교</p>\n\n'
+        + flow_html
+        + f'<div class="two-col">\n'
+        + f'  <div class="col-l">{cmp_html}</div>\n'
+        + f'  <div class="col-r"><img src="{img_rel_path}" style="width:100%;height:100%;object-fit:contain;"></div>\n'
+        + f'</div>\n'
         + FOOTER_HTML
     )
 
@@ -395,13 +409,18 @@ def slide_reflection(name: str, s: dict) -> str:
     )
 
 
-def slides_for_person(name: str, s: dict) -> list[str]:
-    return [
+def slides_for_person(name: str, s: dict, person_dir: Path = None) -> list[str]:
+    slides = [
         slide_cover(name, s),
         slide_problem(name, s),
         slide_impl(name, s),
-        slide_reflection(name, s),
     ]
+    if person_dir:
+        for img in sorted(person_dir.glob("slide_img*.png")):
+            rel = f"../submissions/{person_dir.name}/{img.name}"
+            slides.append(slide_impl_with_image(name, s, rel))
+    slides.append(slide_reflection(name, s))
+    return slides
 
 
 # ── 인트로 전용 파서 & 슬라이드 ────────────────────────────────
@@ -447,72 +466,92 @@ def slide_intro_cover(s: dict) -> str:
     )
 
 
-def slide_intro_recap(s: dict) -> str:
-    """돌아보기: 인용구 + 연표 + 본문"""
-    text = s.get("돌아보기", "")
-    # 인용구 추출
-    quote_lines = []
-    other_lines = []
-    for line in text.splitlines():
-        if line.lstrip().startswith(">"):
-            quote_lines.append(line.lstrip()[1:].strip())
-        else:
-            other_lines.append(line)
-    quote_html = ""
-    if quote_lines:
-        quote_html = "<blockquote>" + "".join(
-            f"<p>{q}</p>" for q in quote_lines if q
-        ) + "</blockquote>"
+def slide_intro_photos(s: dict) -> str:
+    """1기 현장 사진 그리드 (3×3)"""
+    text = s.get("사진", "")
+    # 파일명 줄 파싱
+    filenames = [
+        ln.strip() for ln in text.splitlines()
+        if ln.strip() and not ln.strip().startswith("<!--") and "-->" not in ln.strip()
+        and re.match(r'.+\.(jpg|jpeg|png|gif|webp)$', ln.strip(), re.IGNORECASE)
+    ]
+    # 캡션 추출
+    caption_m = re.search(r'\*\*캡션\*\*\s*[:：]?\s*(.+)', text)
+    caption = caption_m.group(1).strip() if caption_m else "2025.03.13 · 1기 현장"
 
-    body_md = "\n".join(other_lines).strip()
-    body_html = md_to_html(body_md)
+    # 이미지 경로 (showcase.md 기준 상대경로)
+    IMG_BASE = "../submissions/인트로"
+    imgs = filenames[:9]  # 최대 9장
+
+    # 3×3 그리드 HTML (셀 높이 명시: 3행 × 138px = 414px + gap 10px = ~440px)
+    CELL_H = "138px"
+    cells = ""
+    for fn in imgs:
+        cells += (
+            f'<div style="overflow:hidden;height:{CELL_H}">'
+            f'<img src="{IMG_BASE}/{fn}" '
+            f'style="width:100%;height:100%;object-fit:cover;display:block">'
+            f'</div>'
+        )
+    for _ in range(9 - len(imgs)):
+        cells += f'<div style="background:var(--c-cream-band);height:{CELL_H}"></div>'
+
+    grid_html = (
+        f'<div style="display:grid;grid-template-columns:repeat(3,1fr);'
+        f'grid-template-rows:repeat(3,{CELL_H});gap:5px;margin-top:8px">'
+        f'{cells}'
+        f'</div>'
+    )
 
     return (
-        f'# 40일 전, 우리는 1기를 마쳤습니다\n'
-        f'<p class="slide-sub">그 자리에서 나온 질문이 2기의 출발점이 됐습니다.</p>\n\n'
-        f'{quote_html}\n'
-        f'{body_html}\n'
+        f'# 1기가 먼저 증명했습니다\n'
+        f'<p class="slide-sub">{caption}</p>\n\n'
+        f'{grid_html}\n'
         + FOOTER_HTML
     )
 
 
 def slide_intro_frame(s: dict) -> str:
-    """프레임: 1기 vs 2기 대비 구조 (2열 레이아웃 재활용)"""
+    """프레임: 두 기수 공통 메시지 + 2열 (1기|2기) + 핵심 문장"""
     text = s.get("프레임", "")
     items = parse_list_items(text)
-    # 불릿 중 "1기:" 와 "2기:" 를 분리
+
     camp1 = next((it for it in items if re.match(r'^\s*1기', it)), "")
     camp2 = next((it for it in items if re.match(r'^\s*2기', it)), "")
-    # "1기: AI를 **써봤다** — 도구를 경험한 단계" → label+body
-    def split_kv(s: str) -> tuple[str, str]:
-        m = re.match(r'^\s*(\S+)\s*[:：]\s*(.+)$', s)
-        return (m.group(1), m.group(2)) if m else ("", s)
-    l1, b1 = split_kv(camp1)
-    l2, b2 = split_kv(camp2)
 
-    # 마지막 문단 (핵심 질문)
-    closing = ""
+    def split_date_body(it: str):
+        # "1기 (2025.03.13): ..." → label="1기", date="2025.03.13", body="..."
+        m = re.match(r'^\s*(\S+기)\s*[（(]([^）)]+)[）)]\s*[:：]\s*(.+)$', it)
+        if m:
+            return m.group(1), m.group(2), m.group(3)
+        m2 = re.match(r'^\s*(\S+)\s*[:：]\s*(.+)$', it)
+        if m2:
+            return m2.group(1), "", m2.group(2)
+        return ("", "", it)
+
+    l1, d1, b1 = split_date_body(camp1)
+    l2, d2, b2 = split_date_body(camp2)
+
+    # 불릿 블록 제외한 단락들 → closing 문장들
     paragraphs = [p.strip() for p in re.split(r'\n\s*\n', text) if p.strip()]
-    # 불릿 블록을 제외한 마지막 paragraph 찾기
-    for p in reversed(paragraphs):
-        if not p.startswith("-") and not p.startswith("*"):
-            closing = p
-            break
-    closing_html = md_to_html(closing) if closing else ""
+    closing_paras = [p for p in paragraphs if not p.startswith("-") and not p.startswith("*")]
+    closing_html = "".join(md_to_html(p) for p in closing_paras[-2:]) if closing_paras else ""
+
+    def col(label, date, body):
+        date_span = f'<span style="font-size:0.72em;color:var(--c-ink-dim);margin-left:6px">{date}</span>' if date else ""
+        return (
+            f'<p class="sec-label">{label}{date_span}</p>'
+            f'{md_to_html(body) if body else ""}'
+        )
 
     return (
-        f'# 1기는 \'써봤다\'. 2기는 \'바뀌었다\'.\n'
-        f'<p class="slide-sub">도구를 배우는 단계는 지났습니다. 이제 질문이 바뀝니다.</p>\n\n'
+        f'# 두 기수의 공통점 — AI로 일이 달라졌다\n'
+        f'<p class="slide-sub">1기가 증명했고, 2기는 그 사람이 늘어난 것입니다.</p>\n\n'
         f'<div class="two-col">\n'
-        f'  <div class="col-l">'
-        f'<p class="sec-label">{l1 or "1기"}</p>'
-        f'{md_to_html(b1) if b1 else ""}'
+        f'  <div class="col-l">{col(l1 or "1기", d1, b1)}</div>\n'
+        f'  <div class="col-r">{col(l2 or "2기", d2, b2)}</div>\n'
         f'</div>\n'
-        f'  <div class="col-r">'
-        f'<p class="sec-label">{l2 or "2기"}</p>'
-        f'{md_to_html(b2) if b2 else ""}'
-        f'</div>\n'
-        f'</div>\n'
+        f'<hr class="sec-divider">\n'
         f'{closing_html}\n'
         + FOOTER_HTML
     )
@@ -595,7 +634,7 @@ def slide_intro_preview(s: dict) -> str:
 def slides_for_intro(s: dict) -> list[str]:
     return [
         slide_intro_cover(s),
-        slide_intro_recap(s),
+        slide_intro_photos(s),
         slide_intro_frame(s),
         slide_intro_preview(s),
     ]
@@ -622,8 +661,10 @@ def build_presentation(persons, intro=None) -> str:
         f'<span class="corner-sq"></span>'
     )
 
-    for name, sections in persons:
-        slides = slides_for_person(name, sections)
+    for item in persons:
+        name, sections = item[0], item[1]
+        person_dir = item[2] if len(item) > 2 else None
+        slides = slides_for_person(name, sections, person_dir)
         header_dir = f"<!-- header: \"{person_header(name)}\" -->"
         slides[0]  = f"{header_dir}\n<!-- === 발표자: {name} === -->\n\n{slides[0]}"
         slides[-1] = f"{slides[-1]}\n\n<!-- === /발표자: {name} === -->"
@@ -702,8 +743,10 @@ def main():
 
         name, sections = parse_showcase(f)
         filled = sum(1 for v in sections.values() if v)
-        persons.append((name, sections))
-        print(f"  ✓ {person_dir.name:<15} ({name})  — {filled}/6 항목 작성됨")
+        img_count = len(list(person_dir.glob("slide_img*.png")))
+        persons.append((name, sections, person_dir))
+        extra = f" + {img_count}장 이미지 슬라이드" if img_count else ""
+        print(f"  ✓ {person_dir.name:<15} ({name})  — {filled}/6 항목 작성됨{extra}")
 
     if not persons and not intro_sections:
         if excludes:
