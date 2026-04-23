@@ -297,13 +297,16 @@ def slide_impl(name: str, s: dict) -> str:
             if pair:
                 cmp_pairs.append(pair)
 
-    if cmp_pairs:
+    # 모든 ④ 불릿이 "기존 → 자동화" 쌍일 때만 cmp_pairs 모드 사용
+    # (일부만 화살표면 의도 모호 → 레거시로)
+    if cmp_pairs and len(cmp_pairs) == len(items4_all):
         old_items = [p[0] for p in cmp_pairs]
         new_items = [p[1] for p in cmp_pairs]
     else:
-        # 레거시 경로: ② 불릿 = 기존, ④ 불릿 (화살표 없음) = 자동화 후
+        # 레거시 경로: ② 불릿 = 기존, ④ 전체 불릿 = 자동화 후
+        # (플로우 펜타곤과 일부 시각적 중복이 있을 수 있으나 행 누락보단 낫다)
         old_items = parse_list_items(s2)
-        new_items = [it for it in items4_all if "→" not in it]
+        new_items = items4_all
 
     # 펜타곤 플로우
     if flow_steps:
