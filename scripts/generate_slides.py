@@ -352,7 +352,16 @@ def build_presentation(persons: list[tuple[str, dict]]) -> str:
         slide_chunks.extend(slides)
 
     body = "\n\n---\n\n".join(slide_chunks)
-    return f"{build_marp_header()}\n\n{body}\n"
+    warning = (
+        "<!--\n"
+        "  ⚠️ 자동 생성 파일 — 직접 편집 금지\n"
+        "  이 파일은 scripts/generate_slides.py 가 submissions/*/SHOWCASE.md 로부터 생성합니다.\n"
+        "  내용 수정은 submissions/<영문이름>/SHOWCASE.md 를 편집한 뒤,\n"
+        "  프로젝트 루트에서 `bash scripts/build_slides.sh` 를 실행해 재빌드하세요.\n"
+        "  이 파일을 직접 편집하면 다음 빌드에서 변경사항이 전부 사라집니다.\n"
+        "-->"
+    )
+    return f"{build_marp_header()}\n\n{warning}\n\n{body}\n"
 
 
 def update_css():
