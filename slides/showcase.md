@@ -152,6 +152,17 @@ style: |
     margin: 0.7em 0;
   }
 
+  /* ─── Hero 키워드 (핵심 카테고리 강조) ──────── */
+  .hero-kw {
+    display: block;
+    font-size: 1.35em;
+    font-weight: 800;
+    color: var(--c-ink);
+    letter-spacing: 0.01em;
+    margin: 0.25em 0 0.55em;
+    line-height: 1.3;
+  }
+
   /* ─── 인용구 ─────────────────────────────────── */
   blockquote {
     background: var(--c-accent-soft);
@@ -313,17 +324,18 @@ style: |
 
 <div class="cover-title">Evan의<br>자동화 도구</div>
 <p class="cover-presenter"><strong>발표자</strong> 세일즈 매니저 &nbsp;｜&nbsp; Evan</p>
-<div class="cover-tags"><span class="tag">신규 고객 온보딩 자동화</span><span class="tag">신규 온보딩 자동화: 미진행</span></div>
+<div class="cover-tags"><span class="tag">자동화 · 자기복제 · 신속 학습</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
 
 # 문제와 해결 방향
-<p class="slide-sub">신규 고객 온보딩 자동화</p>
+<p class="slide-sub">자동화 · 자기복제 · 신속 학습</p>
 
 <div class="two-col">
-  <div class="col-l"><p class="sec-label">① 문제 상황</p><ul><li>신규 고객 온보딩 자동화</li><li>상품 세일즈(강의안·상페·모객 자료) 기획 자동화</li><li>통화 녹음 및 미팅 기록 자동화</li><li>신규 주제 도메인 이해도 높이기 (학습 튜터)</li></ul><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><ul><li>온보딩: 고객사 LLM 에 코드 입력 시 자동 구현 (부트캠프 Day 4 유사 구조)</li><li>세일즈 기획: 핵심 논리 방법론 + 자료 정교화 → 통합 스킬에서 개별 스킬로 분리해 효율화</li><li>기록: 녹음파일 자동 전달 — 현재 MacroDroid 로 자동화 중</li><li>도메인 이해: 주제별 라이브러리화 + 교육학 기반 학습 시스템 프롬프트</li></ul></div>
-  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>온보딩</td><td>개별 온·오프 미팅 외 대안 없음</td></tr><tr><td>세일즈 기획</td><td>매번 새로 기획·문서화·미팅 반복</td></tr><tr><td>기록</td><td>매번 직접 기록</td></tr><tr><td>도메인 이해</td><td>파편화된 정보 수동 리서치</td></tr></tbody></table></div>
+  <div class="col-l"><p class="sec-label">① 문제 상황</p><p><span class="hero-kw">자동화 · 자기복제 · 신속 학습</span></p>
+<ul><li><strong>자동화</strong>: 통화 녹음 및 미팅 기록 자동화 / 신규 고객 온보딩 자동화</li><li><strong>자기복제</strong>: 세일즈 콘텐츠 기획(무료 강의안, 상세페이지, 광고소재, 모객 콘텐츠) 제작 에이전트</li><li><strong>신속 학습</strong>: 신규 강의 주제 도메인 이해도 높일 튜터</li></ul><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><ul><li>온보딩: 고객사 LLM에 코드 입력 시 자동 구현 (부트캠프 Day 4 유사 구조)</li><li>세일즈 기획: 핵심 논리 방법론 + 자료 정교화 — 통합 스킬에서 개별 스킬로 분리해 효율화</li><li>기록: 녹음파일 자동 전달 — 현재 MacroDroid로 자동화 중</li><li>도메인 이해: 주제별 라이브러리화 + 교육학 기반 학습 시스템 프롬프트</li></ul></div>
+  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>온보딩</td><td>개별 온·오프 미팅 외 대안 없음</td></tr><tr><td>세일즈 기획</td><td>매번 새로 기획·문서화·미팅 반복</td></tr><tr><td>기록</td><td>매번 직접 기록</td></tr><tr><td>도메인 이해</td><td>파편화된 정보 수동 리서치</td></tr><tr><td>병목</td><td>(문제별 세부 병목 — 추후 추가 예정)</td></tr></tbody></table></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -332,7 +344,7 @@ style: |
 # 현재 구현 단계
 <p class="slide-sub">자동화 전·후 비교</p>
 
-<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>개별 온·오프 미팅 외 대안 없음</td><td class="m-mid">온보딩</td><td>신규 온보딩 자동화: 미진행</td></tr><tr><td>매번 새로 기획·문서화·미팅 반복</td><td class="m-mid">세일즈 기획</td><td>세일즈 기획 자동화: 무료 강의안 기획부터 일부 진행</td></tr><tr><td>매번 직접 기록</td><td class="m-mid">기록</td><td>기록 자동화: 녹음 → 드라이브 업로드 구간 해결 중</td></tr><tr><td>파편화된 정보 수동 리서치</td><td class="m-mid">도메인 이해</td><td>학습 튜터: 미진행</td></tr></tbody></table>
+<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>개별 온·오프 미팅 외 대안 없음</td><td class="m-mid">온보딩</td><td>신규 온보딩 자동화: 미진행</td></tr><tr><td>매번 새로 기획·문서화·미팅 반복</td><td class="m-mid">세일즈 기획</td><td>세일즈 기획 자동화: 무료 강의안 기획부터 일부 진행</td></tr><tr><td>매번 직접 기록</td><td class="m-mid">기록</td><td>기록 자동화: 녹음파일 드라이브 업로드 구간 해결 중</td></tr><tr><td>파편화된 정보 수동 리서치</td><td class="m-mid">도메인 이해</td><td>학습 튜터: 미진행</td></tr></tbody></table>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
@@ -344,7 +356,7 @@ style: |
 <ul><li>위 에이전트 완성 및 현재 진행 단계 문제 해결</li></ul>
 <hr class="sec-divider">
 <p class="sec-label">⑥ 소감</p>
-<p>AI 가 미지의 영역처럼 막연했는데, 작동 구조와 운영 방식을 배울 수 있어 좋았습니다. 배운 기틀을 기준으로 계속 업데이트해나가겠습니다.</p>
+<p>AI가 미지의 영역처럼 막연했는데, 작동 구조와 운영 방식을 배울 수 있어 좋았습니다. 배운 기틀을 기준으로 계속 업데이트해나가겠습니다.</p>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 <!-- === /발표자: Evan === -->

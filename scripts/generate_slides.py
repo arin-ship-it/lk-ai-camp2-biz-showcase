@@ -108,6 +108,7 @@ def first_sentence(text: str) -> str:
     for line in text.splitlines():
         line = line.strip().lstrip("#").lstrip("-").lstrip("*").strip()
         line = re.sub(r'^\d+[.)]\s*', '', line).strip()
+        line = re.sub(r'<[^>]+>', '', line).strip()
         if line and not line.startswith(">"):
             return line[:120] + ("…" if len(line) > 120 else "")
     return ""
