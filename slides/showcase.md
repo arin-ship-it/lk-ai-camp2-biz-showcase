@@ -315,32 +315,30 @@ style: |
 
 <div class="cover-title">LK AI Camp 2기</div>
 <p class="cover-presenter">사업팀 AI 네이티브 캠프 &nbsp;｜&nbsp; <strong>2026.04.23</strong></p>
-<div class="cover-tags"><span class="tag">40일 만의 재회</span><span class="tag">4명의 발표자</span><span class="tag">사업팀</span></div>
+<div class="cover-tags"><span class="tag">1기에 이어</span><span class="tag">4명의 발표자</span><span class="tag">사업팀</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
 
-# 40일 전, 우리는 1기를 마쳤습니다
-<p class="slide-sub">그 자리에서 나온 질문이 2기의 출발점이 됐습니다.</p>
+# 1기가 먼저 증명했습니다
+<p class="slide-sub">2025.03.13 · 1기 현장</p>
 
-<blockquote><p>"이게 되네?"</p><p>그리고 바로 다음 질문 — "그럼 이제 뭘 해야 하지?"</p><p>그 질문이 2기의 출발점이 됐습니다.</p></blockquote>
-<ul><li><strong>1기</strong>: 2026.03.13 — "AI를 써봤다"</li><li><strong>2기</strong>: 2026.04.23 — 40일 뒤, 오늘</li></ul>
-<p>1기 발표를 마치고 나왔던 공통 반응이 기억에 남습니다.</p>
-<p>각자 자리에서 딱 40일 — 짧다면 짧고, 길다면 긴 시간 동안 다들 꽤 많이 움직이셨습니다.</p>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;flex:1;min-height:0"><div style="overflow:hidden"><img src="../submissions/인트로/camp1-01.jpg" style="width:100%;height:100%;object-fit:cover"></div><div style="overflow:hidden"><img src="../submissions/인트로/camp1-02.jpg" style="width:100%;height:100%;object-fit:cover"></div><div style="overflow:hidden"><img src="../submissions/인트로/camp1-03.jpg" style="width:100%;height:100%;object-fit:cover"></div><div style="overflow:hidden"><img src="../submissions/인트로/camp1-04.jpg" style="width:100%;height:100%;object-fit:cover"></div><div style="overflow:hidden"><img src="../submissions/인트로/camp1-05.jpg" style="width:100%;height:100%;object-fit:cover"></div><div style="overflow:hidden"><img src="../submissions/인트로/camp1-06.jpg" style="width:100%;height:100%;object-fit:cover"></div><div style="overflow:hidden"><img src="../submissions/인트로/camp1-07.jpg" style="width:100%;height:100%;object-fit:cover"></div><div style="overflow:hidden"><img src="../submissions/인트로/camp1-08.jpg" style="width:100%;height:100%;object-fit:cover"></div><div style="overflow:hidden"><img src="../submissions/인트로/camp1-09.jpg" style="width:100%;height:100%;object-fit:cover"></div></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
 
-# 1기는 '써봤다'. 2기는 '바뀌었다'.
-<p class="slide-sub">도구를 배우는 단계는 지났습니다. 이제 질문이 바뀝니다.</p>
+# 두 기수의 공통점 — AI로 일이 달라졌다
+<p class="slide-sub">1기가 증명했고, 2기는 그 사람이 늘어난 것입니다.</p>
 
 <div class="two-col">
-  <div class="col-l"><p class="sec-label">1기</p><p>AI를 <strong>써봤다</strong> — 도구를 경험한 단계</p></div>
-  <div class="col-r"><p class="sec-label">2기</p><p>AI로 <strong>일하는 방식이 바뀌었다</strong> — 업무의 순서가 재편된 단계</p></div>
+  <div class="col-l"><p class="sec-label">1기<span style="font-size:0.72em;color:var(--c-ink-dim);margin-left:6px">2025.03.13</span></p><p>AI로 일하는 방식이 달라졌다 — 먼저 경험한 사람들</p></div>
+  <div class="col-r"><p class="sec-label">2기<span style="font-size:0.72em;color:var(--c-ink-dim);margin-left:6px">2026.04.23</span></p><p>같은 변화를 더 많은 사람이 함께 경험하는 것</p></div>
 </div>
-<p>도구를 배우는 단계는 지났습니다.</p>
-<p>이제부터의 질문은 이겁니다 —</p>
-<p><strong>"내 업무의 어느 지점에 AI를 끼워 넣었을 때, 결과물이 달라지는가."</strong></p>
+<hr class="sec-divider">
+<p>1기가 증명했습니다. <strong>"이게 되네."</strong></p>
+<p>2기는 그 사람이 늘어난 것입니다.</p><p>두 기수 모두의 이야기는 <strong>"AI를 써봤다"</strong> 가 아니라</p>
+<p><strong>"AI로 내 일이 달라졌다"</strong> 입니다.</p>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
@@ -487,39 +485,6 @@ style: |
 <p class="slide-sub">자동화 전·후 비교</p>
 
 <table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table>
-<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
----
-
-# 현재 구현 단계
-<p class="slide-sub">자동화 전·후 비교</p>
-
-<div class="two-col">
-  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
-  <div class="col-r"><img src="../submissions/chaeeun-jang/slide_img1.png" style="width:100%;height:100%;object-fit:contain;"></div>
-</div>
-<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
----
-
-# 현재 구현 단계
-<p class="slide-sub">자동화 전·후 비교</p>
-
-<div class="two-col">
-  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
-  <div class="col-r"><img src="../submissions/chaeeun-jang/slide_img2.png" style="width:100%;height:100%;object-fit:contain;"></div>
-</div>
-<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
----
-
-# 현재 구현 단계
-<p class="slide-sub">자동화 전·후 비교</p>
-
-<div class="two-col">
-  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
-  <div class="col-r"><img src="../submissions/chaeeun-jang/slide_img3.png" style="width:100%;height:100%;object-fit:contain;"></div>
-</div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
