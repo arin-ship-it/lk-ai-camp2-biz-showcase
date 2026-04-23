@@ -25,6 +25,10 @@ OUTPUT_MD       = SLIDES_DIR / "showcase.md"
 OUTPUT_PDF      = SLIDES_DIR / "showcase.pdf"
 THEME_CSS_PATH  = SLIDES_DIR / "theme.css"
 
+# 인트로 전용 폴더 (일반 발표자 템플릿과 다른 구조로 파싱)
+INTRO_FOLDER_NAMES = {"인트로", "intro"}
+INTRO_HEADER       = "**LK AI Camp 2기** · 2026.04.23"
+
 # 발표자별 직무 매핑 (name은 소문자로 비교)
 # 새 발표자 추가 시 여기에 등록하세요.
 ROLE_BY_NAME = {
@@ -400,15 +404,223 @@ def slides_for_person(name: str, s: dict) -> list[str]:
     ]
 
 
-def build_presentation(persons: list[tuple[str, dict]]) -> str:
+# ── 인트로 전용 파서 & 슬라이드 ────────────────────────────────
+
+def parse_intro(path: Path) -> dict:
+    """인트로 SHOWCASE.md 를 `## 섹션명` 기준으로 분해한다."""
+    content = path.read_text(encoding="utf-8")
+    parts = re.split(r'^## (.+)$', content, flags=re.MULTILINE)
+    sections = {}
+    for i in range(1, len(parts), 2):
+        name = parts[i].strip()
+        body = parts[i + 1].strip() if i + 1 < len(parts) else ""
+        body = re.sub(r'\n---\s*$', '', body).strip()
+        sections[name] = body
+    return sections
+
+
+def _intro_kv(text: str) -> dict:
+    """`**키**: 값` 패턴을 딕셔너리로."""
+    out = {}
+    for line in text.splitlines():
+        m = re.match(r'^\s*\*\*(.+?)\*\*\s*[:：]\s*(.+)$', line.strip())
+        if m:
+            out[m.group(1).strip()] = m.group(2).strip()
+    return out
+
+
+def slide_intro_cover(s: dict) -> str:
+    kv = _intro_kv(s.get("커버", ""))
+    title    = kv.get("제목", "LK AI Camp 2기")
+    subtitle = kv.get("부제", "사업팀 AI 네이티브 캠프")
+    date     = kv.get("날짜", "2026.04.23")
+    tags_raw = kv.get("태그", "")
+    tags = [t.strip() for t in re.split(r'[·,/]', tags_raw) if t.strip()]
+    tags_html = ''.join(f'<span class="tag">{t}</span>' for t in tags)
+
+    return (
+        f"<!-- _class: cover -->\n\n"
+        f'<div class="cover-title">{title}</div>\n'
+        f'<p class="cover-presenter">{subtitle} &nbsp;｜&nbsp; <strong>{date}</strong></p>\n'
+        + (f'<div class="cover-tags">{tags_html}</div>\n' if tags_html else "")
+        + FOOTER_HTML
+    )
+
+
+def slide_intro_recap(s: dict) -> str:
+    """돌아보기: 인용구 + 연표 + 본문"""
+    text = s.get("돌아보기", "")
+    # 인용구 추출
+    quote_lines = []
+    other_lines = []
+    for line in text.splitlines():
+        if line.lstrip().startswith(">"):
+            quote_lines.append(line.lstrip()[1:].strip())
+        else:
+            other_lines.append(line)
+    quote_html = ""
+    if quote_lines:
+        quote_html = "<blockquote>" + "".join(
+            f"<p>{q}</p>" for q in quote_lines if q
+        ) + "</blockquote>"
+
+    body_md = "\n".join(other_lines).strip()
+    body_html = md_to_html(body_md)
+
+    return (
+        f'# 40일 전, 우리는 1기를 마쳤습니다\n'
+        f'<p class="slide-sub">그 자리에서 나온 질문이 2기의 출발점이 됐습니다.</p>\n\n'
+        f'{quote_html}\n'
+        f'{body_html}\n'
+        + FOOTER_HTML
+    )
+
+
+def slide_intro_frame(s: dict) -> str:
+    """프레임: 1기 vs 2기 대비 구조 (2열 레이아웃 재활용)"""
+    text = s.get("프레임", "")
+    items = parse_list_items(text)
+    # 불릿 중 "1기:" 와 "2기:" 를 분리
+    camp1 = next((it for it in items if re.match(r'^\s*1기', it)), "")
+    camp2 = next((it for it in items if re.match(r'^\s*2기', it)), "")
+    # "1기: AI를 **써봤다** — 도구를 경험한 단계" → label+body
+    def split_kv(s: str) -> tuple[str, str]:
+        m = re.match(r'^\s*(\S+)\s*[:：]\s*(.+)$', s)
+        return (m.group(1), m.group(2)) if m else ("", s)
+    l1, b1 = split_kv(camp1)
+    l2, b2 = split_kv(camp2)
+
+    # 마지막 문단 (핵심 질문)
+    closing = ""
+    paragraphs = [p.strip() for p in re.split(r'\n\s*\n', text) if p.strip()]
+    # 불릿 블록을 제외한 마지막 paragraph 찾기
+    for p in reversed(paragraphs):
+        if not p.startswith("-") and not p.startswith("*"):
+            closing = p
+            break
+    closing_html = md_to_html(closing) if closing else ""
+
+    return (
+        f'# 1기는 \'써봤다\'. 2기는 \'바뀌었다\'.\n'
+        f'<p class="slide-sub">도구를 배우는 단계는 지났습니다. 이제 질문이 바뀝니다.</p>\n\n'
+        f'<div class="two-col">\n'
+        f'  <div class="col-l">'
+        f'<p class="sec-label">{l1 or "1기"}</p>'
+        f'{md_to_html(b1) if b1 else ""}'
+        f'</div>\n'
+        f'  <div class="col-r">'
+        f'<p class="sec-label">{l2 or "2기"}</p>'
+        f'{md_to_html(b2) if b2 else ""}'
+        f'</div>\n'
+        f'</div>\n'
+        f'{closing_html}\n'
+        + FOOTER_HTML
+    )
+
+
+def slide_intro_preview(s: dict) -> str:
+    """오늘의 관람 포인트 + 발표자 프리뷰"""
+    text = s.get("오늘의 관람 포인트", "")
+
+    # "보는 법" 섹션 (X/O 대비)
+    view_items = []
+    speaker_items = []
+    closing_quote = ""
+
+    mode = None
+    for line in text.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("**보는 법**"):
+            mode = "view"; continue
+        if stripped.startswith("**오늘의 발표자"):
+            mode = "speakers"; continue
+        if stripped.startswith(">"):
+            closing_quote = stripped.lstrip(">").strip()
+            mode = None; continue
+        if mode == "view" and re.match(r'^[-*]\s+', stripped):
+            view_items.append(re.sub(r'^[-*]\s+', '', stripped))
+        elif mode == "speakers" and re.match(r'^[-*]\s+', stripped):
+            speaker_items.append(re.sub(r'^[-*]\s+', '', stripped))
+
+    view_html = ""
+    if view_items:
+        view_html = "<ul>" + "".join(f"<li>{md_to_html(v).strip('<p></p>')}</li>" for v in view_items) + "</ul>"
+
+    speakers_html = ""
+    if speaker_items:
+        rows = ""
+        for item in speaker_items:
+            # "**Evan** — 세일즈 매니저 · 신규 고객 온보딩 자동화"
+            m = re.match(r'^\*\*(.+?)\*\*\s*[—\-–]\s*(.+?)\s*[·・]\s*(.+)$', item)
+            if m:
+                rows += (
+                    f'<tr>'
+                    f'<td><strong>{m.group(1)}</strong></td>'
+                    f'<td class="m-mid">{m.group(2)}</td>'
+                    f'<td>{m.group(3)}</td>'
+                    f'</tr>'
+                )
+            else:
+                rows += f'<tr><td colspan="3">{item}</td></tr>'
+        speakers_html = (
+            '<table class="cmp-table">'
+            '<thead><tr>'
+            '<th class="h-left">발표자</th>'
+            '<th class="h-mid">직무</th>'
+            '<th class="h-right">주제</th>'
+            '</tr></thead>'
+            f'<tbody>{rows}</tbody>'
+            '</table>'
+        )
+
+    if closing_quote:
+        quote_inline = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', closing_quote)
+        closing_html = f"<blockquote><p>{quote_inline}</p></blockquote>"
+    else:
+        closing_html = ""
+
+    return (
+        f'# 오늘의 관람 포인트\n'
+        f'<p class="slide-sub">\'AI를 썼구나\'가 아니라 \'일하는 순서를 바꿨구나\'를 봐주세요.</p>\n\n'
+        f'<p class="sec-label">보는 법</p>\n'
+        f'{view_html}\n'
+        f'<hr class="sec-divider">\n'
+        f'<p class="sec-label">오늘의 발표자 (4명)</p>\n'
+        f'{speakers_html}\n'
+        f'{closing_html}\n'
+        + FOOTER_HTML
+    )
+
+
+def slides_for_intro(s: dict) -> list[str]:
+    return [
+        slide_intro_cover(s),
+        slide_intro_recap(s),
+        slide_intro_frame(s),
+        slide_intro_preview(s),
+    ]
+
+
+def build_presentation(persons, intro=None) -> str:
+    slide_chunks: list[str] = []
+
+    # 인트로 (있으면 맨 앞에 배치)
+    if intro:
+        intro_slides = slides_for_intro(intro)
+        header_dir = f"<!-- header: \"{INTRO_HEADER}\" -->"
+        intro_slides[0]  = f"{header_dir}\n<!-- === 인트로 === -->\n\n{intro_slides[0]}"
+        intro_slides[-1] = f"{intro_slides[-1]}\n\n<!-- === /인트로 === -->"
+        slide_chunks.extend(intro_slides)
+
+    # "우리가 만든 것들" 디바이더
     first_header = person_header(persons[0][0]) if persons else "LK AI Camp 2기"
-    slide_chunks: list[str] = [
+    slide_chunks.append(
         f"<!-- _class: divider -->\n"
         f"<!-- _header: \"{first_header}\" -->\n\n"
         f"# 우리가 만든 것들\n\n"
         f'<span class="slide-footer">2026.04</span>'
         f'<span class="corner-sq"></span>'
-    ]
+    )
 
     for name, sections in persons:
         slides = slides_for_person(name, sections)
@@ -471,6 +683,7 @@ def main():
         sys.exit(1)
 
     persons = []
+    intro_sections = None
     for person_dir in sorted(SUBMISSIONS_DIR.iterdir()):
         if not person_dir.is_dir():
             continue
@@ -480,21 +693,28 @@ def main():
         f = person_dir / "SHOWCASE.md"
         if not f.exists():
             continue
+
+        if person_dir.name in INTRO_FOLDER_NAMES or person_dir.name.lower() in INTRO_FOLDER_NAMES:
+            intro_sections = parse_intro(f)
+            filled = sum(1 for v in intro_sections.values() if v)
+            print(f"  ✓ {person_dir.name:<15} (인트로)       — {filled} 섹션 작성됨")
+            continue
+
         name, sections = parse_showcase(f)
         filled = sum(1 for v in sections.values() if v)
         persons.append((name, sections))
         print(f"  ✓ {person_dir.name:<15} ({name})  — {filled}/6 항목 작성됨")
 
-    if not persons:
+    if not persons and not intro_sections:
         if excludes:
             print("\n제외 규칙으로 모든 발표자가 빠졌습니다. 디바이더 슬라이드만 생성합니다.")
         else:
             print("\n제출된 SHOWCASE.md 파일이 없습니다.")
             sys.exit(1)
 
-    print(f"\n총 {len(persons)}명 파싱 완료. 슬라이드 생성 중...")
+    print(f"\n총 {len(persons)}명 파싱 완료" + (" (+ 인트로)" if intro_sections else "") + ". 슬라이드 생성 중...")
     SLIDES_DIR.mkdir(exist_ok=True)
-    md = build_presentation(persons)
+    md = build_presentation(persons, intro=intro_sections)
     OUTPUT_MD.write_text(md, encoding="utf-8")
     print(f"마크다운 생성: {OUTPUT_MD}")
 
