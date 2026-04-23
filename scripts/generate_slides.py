@@ -112,8 +112,8 @@ def parse_showcase(path: Path) -> tuple[str, dict]:
     name = name_m.group(1) if name_m else (raw.replace("AI Camp2 Showcase", "").strip() or path.parent.name)
 
     sections: dict[str, str] = {}
-    for num in "①②③④⑤⑥":
-        pat = rf"## {re.escape(num)}\s+[^\n]+\n(.*?)(?=\n## [①②③④⑤⑥]|$)"
+    for num in "①②③④⑤⑥⑦":
+        pat = rf"## {re.escape(num)}\s+[^\n]+\n(.*?)(?=\n## [①②③④⑤⑥⑦]|$)"
         m = re.search(pat, content, re.DOTALL)
         text = m.group(1).strip() if m else ""
         text = re.sub(r"\n---\s*$", "", text).strip()
@@ -278,12 +278,12 @@ def slide_problem(name: str, s: dict) -> str:
         f'<p class="sec-label">① 문제 상황</p>'
         f'{s1_html}'
         f'<hr class="sec-divider">'
-        f'<p class="sec-label">③ 지향했던 방향성</p>'
-        f'{s3_html}'
-        f'</div>\n'
-        f'  <div class="col-r">'
         f'<p class="sec-label">② 기존 방식의 병목</p>'
         f'{table_html}'
+        f'</div>\n'
+        f'  <div class="col-r">'
+        f'<p class="sec-label">③ 지향했던 방향성</p>'
+        f'{s3_html}'
         f'</div>\n'
         f'</div>\n'
         + FOOTER_HTML
@@ -424,6 +424,65 @@ def slide_reflection(name: str, s: dict) -> str:
     )
 
 
+def slide_demo_screens(name: str, person_dir: Path):
+    """앱 화면 2장을 나란히 보여주는 슬라이드."""
+    img1 = person_dir / "app_screen1.png"
+    img2 = person_dir / "app_screen2.png"
+    if not img1.exists() and not img2.exists():
+        return None
+
+    def img_tag(p: Path) -> str:
+        rel = f"../submissions/{person_dir.name}/{p.name}"
+        return (
+            f'<img src="{rel}" style="max-width:100%;max-height:360px;'
+            f'object-fit:contain;border-radius:8px;'
+            f'box-shadow:0 2px 12px rgba(0,0,0,0.12);">'
+        )
+
+    left  = img_tag(img1) if img1.exists() else ""
+    right = img_tag(img2) if img2.exists() else ""
+    return (
+        f'# 앱 화면\n'
+        f'<p class="slide-sub">키프레임 발굴 봇 — Streamlit 프로토타입</p>\n\n'
+        f'<div class="two-col" style="align-items:center;">\n'
+        f'  <div class="col-l" style="text-align:center;">{left}</div>\n'
+        f'  <div class="col-r" style="text-align:center;">{right}</div>\n'
+        f'</div>\n'
+        + FOOTER_HTML
+    )
+
+
+def slide_demo_examples(s7: str):
+    """예시 결과 테이블 슬라이드. | 구분자로 파싱."""
+    if not s7:
+        return None
+    rows = ""
+    for line in s7.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        parts = [p.strip() for p in line.split('|')]
+        if len(parts) >= 3:
+            bg   = parts[0][:38] + ("…" if len(parts[0]) > 38 else "")
+            sig  = parts[1]
+            defn = parts[2][:48] + ("…" if len(parts[2]) > 48 else "")
+            rows += f'<tr><td style="font-size:0.78em;">{bg}</td><td><strong>{sig}</strong></td><td style="font-size:0.8em;">{defn}</td></tr>'
+    if not rows:
+        return None
+    table = (
+        f'<table>'
+        f'<thead><tr><th>강사 배경</th><th>시그니처명</th><th>한 줄 정의</th></tr></thead>'
+        f'<tbody>{rows}</tbody>'
+        f'</table>'
+    )
+    return (
+        f'# 예시 결과\n'
+        f'<p class="slide-sub">실제 강사 데이터로 발굴한 키프레임 3가지</p>\n\n'
+        + table + "\n"
+        + FOOTER_HTML
+    )
+
+
 def slides_for_person(name: str, s: dict, person_dir: Path = None) -> list[str]:
     slides = [
         slide_cover(name, s),
@@ -435,6 +494,13 @@ def slides_for_person(name: str, s: dict, person_dir: Path = None) -> list[str]:
             rel = f"../submissions/{person_dir.name}/{img.name}"
             slides.append(slide_impl_with_image(name, s, rel))
     slides.append(slide_reflection(name, s))
+    if person_dir:
+        screens = slide_demo_screens(name, person_dir)
+        if screens:
+            slides.append(screens)
+        examples = slide_demo_examples(s.get("⑦", ""))
+        if examples:
+            slides.append(examples)
     return slides
 
 
