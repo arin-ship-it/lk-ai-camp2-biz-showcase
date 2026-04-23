@@ -400,8 +400,8 @@ style: |
 <p class="slide-sub">매일 상시퍼널 클래스의 신청자 목록을 다운받아 신청자 수·완강률·결제 전환율 등을 직접 계산</p>
 
 <div class="two-col">
-  <div class="col-l"><p class="sec-label">① 문제 상황</p><ul><li>매일 상시퍼널 클래스의 신청자 목록을 다운받아 신청자 수·완강률·결제 전환율 등을 직접 계산</li><li>고객사에 공유 보고서가 필요한 경우 일자별·주차별·월별로 정리해 노션에 옮기는 작업 반복</li><li>상시퍼널을 적용하는 고객사가 빠르게 늘어남에 따라 소요 시간이 크게 늘 것으로 예상됨</li></ul><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><p>파일을 폴더에 드롭하고 "inbox 처리해줘" 한 마디면 분석·DB 기록·보고서 생성까지 자동 완료. 숫자가 아닌 인사이트에만 집중할 수 있는 구조.</p></div>
-  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>병목</td><td>매번 수동으로 카운트 및 분석 → 일자별 추적 어려움</td></tr><tr><td>병목</td><td>파트별 이탈 시각화 불가</td></tr><tr><td>병목</td><td>고객사의 이해를 도울 차트 등 시각화 어려움</td></tr><tr><td>병목</td><td>결제 전환율 매칭 — 결제자 시트와 대조하며 추적</td></tr></tbody></table></div>
+  <div class="col-l"><p class="sec-label">① 문제 상황</p><ul><li>매일 상시퍼널 클래스의 신청자 목록을 다운받아 신청자 수·완강률·결제 전환율 등을 직접 계산</li><li>고객사에 공유 보고서가 필요한 경우 일자별·주차별·월별로 정리해 노션에 옮기는 작업 반복</li><li>상시퍼널을 적용하는 고객사가 빠르게 늘어남에 따라 소요 시간이 크게 늘 것으로 예상됨</li></ul><hr class="sec-divider"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>병목</td><td>매번 수동으로 카운트 및 분석 → 일자별 추적 어려움</td></tr><tr><td>병목</td><td>파트별 이탈 시각화 불가</td></tr><tr><td>병목</td><td>고객사의 이해를 도울 차트 등 시각화 어려움</td></tr><tr><td>병목</td><td>결제 전환율 매칭 — 결제자 시트와 대조하며 추적</td></tr></tbody></table></div>
+  <div class="col-r"><p class="sec-label">③ 지향했던 방향성</p><p>파일을 폴더에 드롭하고 "inbox 처리해줘" 한 마디면 분석·DB 기록·보고서 생성까지 자동 완료. 숫자가 아닌 인사이트에만 집중할 수 있는 구조.</p></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -469,19 +469,21 @@ style: |
 
 <div class="cover-title">mjshin의<br>자동화 도구</div>
 <p class="cover-presenter"><strong>발표자</strong> 그로스 매니저 &nbsp;｜&nbsp; mjshin</p>
-<div class="cover-tags"><span class="tag">매니저 1명이 담당 가능한 고객사</span><span class="tag">3단계 자동화 워크플로우</span><span class="tag">질문 플로우 설계: 매니저 킥오프 인</span></div>
+<div class="cover-tags"><span class="tag">사업팀 목표는 공헌이익 극대화임.</span><span class="tag">5단계 자동화 워크플로우</span><span class="tag">질문 플로우 설계: 매니저 킥오프 인</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
 
 # 문제와 해결 방향
-<p class="slide-sub">매니저 1명이 담당 가능한 고객사 수는 리소스에 의해 결정된다. 매 고객사마다 두 단계가 리소스를 반복 소모하고 있었다.</p>
+<p class="slide-sub">사업팀 목표는 공헌이익 극대화임. 이를 위해 두 가지가 동시에 필요함:</p>
 
 <div class="two-col">
-  <div class="col-l"><p class="sec-label">① 문제 상황</p><p>매니저 1명이 담당 가능한 고객사 수는 리소스에 의해 결정된다. 매 고객사마다 두 단계가 리소스를 반복 소모하고 있었다.</p>
-<ul><li>소통 단계 — 브랜딩·퍼널·상품 기획 정보 수집용 반복 커뮤니케이션</li><li>기획 단계 — 수집한 정보를 실제 기획물로 변환하는 작업</li></ul>
-<p>두 단계를 자동화하면 더 많은 고객사 런칭 + 기획 완성도에 집중 가능.</p><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><ul><li>인풋 최적화: 핵심 질문 체계화 + AI 시뮬레이션 꼬리질문 → 1회 미팅으로 수집 완료</li><li>기획 자동화: 시장조사·경쟁사 분석·차별화 포인트 도출 시간 단축</li><li>산출물 자동화: 광고·무료/유료 상품 페이지·강의 구성 4가지 자동 생성</li><li>얼라인 간소화: 핵심 미팅 1회 + 나머지 비동기</li></ul></div>
-  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>인풋 수집</td><td>매 미팅 전 맞춤 인터뷰 설계 반복</td></tr><tr><td>기획 반복</td><td>시장조사·크리에이티브·기획물 재작성 사이클</td></tr><tr><td>얼라인 비용</td><td>미팅 2~3회마다 고객사 재확인</td></tr><tr><td>시간 구조</td><td>기획 1건에 최소 7일 구조적 고정</td></tr></tbody></table></div>
+  <div class="col-l"><p class="sec-label">① 문제 상황</p><p>사업팀 목표는 공헌이익 극대화임. 이를 위해 두 가지가 동시에 필요함:</p>
+<ul><li>V급 고객사에 리소스 80% 집중</li><li>잠재 V급을 키우는 인큐베이팅 구조 운영</li></ul>
+<p>운영은 매니저 수동 터치가 필수이나, 기획은 AI 자동화가 가능함. → 기획 앞단을 대신하는 에이전트(매니저 복사본)가 필요했음</p>
+<p>문제는 그 기획 앞단에 있었음:</p>
+<ul><li>소통 단계 — 브랜딩·퍼널·상품 기획 정보 수집용 반복 커뮤니케이션</li><li>기획 단계 — 수집한 정보를 실제 기획물로 변환하는 작업</li></ul><hr class="sec-divider"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>인풋 수집</td><td>매 미팅 전 맞춤 인터뷰 설계 반복</td></tr><tr><td>기획 반복</td><td>시장조사·크리에이티브·기획물 재작성 사이클</td></tr><tr><td>얼라인 비용</td><td>미팅 2~3회마다 고객사 재확인</td></tr><tr><td>시간 구조</td><td>기획 1건에 최소 7일 구조적 고정</td></tr></tbody></table></div>
+  <div class="col-r"><p class="sec-label">③ 지향했던 방향성</p><ul><li>인풋 최적화: 핵심 질문 체계화 + AI 시뮬레이션 꼬리질문 → 1회 미팅으로 수집 완료</li><li>기획 자동화: 시장조사·경쟁사 분석·차별화 포인트 도출 시간 단축</li><li>산출물 자동화: 광고·무료/유료 상품 페이지·강의 구성 4가지 자동 생성</li><li>얼라인 간소화: 핵심 미팅 1회 + 나머지 비동기</li></ul></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -490,8 +492,8 @@ style: |
 # 현재 구현 단계
 <p class="slide-sub">자동화 전·후 비교</p>
 
-<div class="flow-wrap"><div class="flow-step"><div class="flow-num">01</div>역설 5유형</div><div class="flow-step"><div class="flow-num">02</div>내부자 지식 4유형</div><div class="flow-step"><div class="flow-num">03</div>렌즈 명명</div></div>
-<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>매 미팅 전 맞춤 인터뷰 설계 반복</td><td class="m-mid">인풋 수집</td><td>질문 플로우 설계: 매니저 킥오프 인터뷰 역분석으로 핵심 질문 7개 + 꼬리질문 구조 추출</td></tr><tr><td>시장조사·크리에이티브·기획물 재작성 사이클</td><td class="m-mid">기획 반복</td><td>시그니처 발굴 프롬프트: 3단계 사고 프로세스 (역설 5유형 → 내부자 지식 4유형 → 렌즈 명명)</td></tr><tr><td>미팅 2~3회마다 고객사 재확인</td><td class="m-mid">얼라인 비용</td><td>단독성 검증: 이 고객사만의 것인지 자동 검증 3가지 필터</td></tr><tr><td>기획 1건에 최소 7일 구조적 고정</td><td class="m-mid">시간 구조</td><td>Streamlit 프로토타입: 모바일 최적화로 입력~결과 확인 구동 중</td></tr></tbody></table>
+<div class="flow-wrap"><div class="flow-step"><div class="flow-num">01</div>강사 정보 입력</div><div class="flow-step"><div class="flow-num">02</div>핵심 질문 7개</div><div class="flow-step"><div class="flow-num">03</div>시그니처 발굴</div><div class="flow-step"><div class="flow-num">04</div>단독성 검증</div><div class="flow-step"><div class="flow-num">05</div>키프레임 제안</div></div>
+<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>매 미팅 전 맞춤 인터뷰 설계 반복</td><td class="m-mid">인풋 수집</td><td>질문 플로우 설계: 매니저 킥오프 인터뷰 역분석으로 핵심 질문 7개 + 꼬리질문 구조 추출</td></tr><tr><td>시장조사·크리에이티브·기획물 재작성 사이클</td><td class="m-mid">기획 반복</td><td>시그니처 발굴 프롬프트: 3단계 사고 프로세스 (역설 5유형, 내부자 지식 4유형, 렌즈 명명)</td></tr><tr><td>미팅 2~3회마다 고객사 재확인</td><td class="m-mid">얼라인 비용</td><td>단독성 검증: 이 고객사만의 것인지 자동 검증 3가지 필터</td></tr><tr><td>기획 1건에 최소 7일 구조적 고정</td><td class="m-mid">시간 구조</td><td>Streamlit 프로토타입: 모바일 최적화로 입력~결과 확인 구동 중</td></tr></tbody></table>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
@@ -506,6 +508,25 @@ style: |
 <p>이번 캠프에서 가장 크게 느낀 건 <strong>구현보다 문제 정의가 먼저</strong>라는 것.</p>
 <p>첫 주간보고서봇은 배포까지 했지만 아무도 못 썼다 — 쓸 사람이 뭘 필요로 하는지 물어보지 않고 내가 만들고 싶은 걸 만들었기 때문. 이후 상세페이지봇은 실제 매니저 인터뷰 분석 → 피드백 반영 → 기획서 v1~v4 반복으로 구현보다 설계에 더 많은 시간을 썼다.</p>
 <p>진짜 병목은 훨씬 앞 단계 — AI 에게 주는 <strong>인풋의 퀄리티</strong> 였다. 질문 설계, 현장 암묵지 유형화, 수백 가지 경우의 수 시뮬레이션. 도구는 같아도 인풋이 다르면 결과가 달라지고, AI 가 좋아질수록 실력 차이는 인풋 설계의 정밀도에서 벌어진다.</p>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+# 앱 화면
+<p class="slide-sub">키프레임 발굴 봇 — Streamlit 프로토타입</p>
+
+<div class="two-col" style="align-items:center;">
+  <div class="col-l" style="text-align:center;"><img src="../submissions/mjshin/app_screen1.png" style="max-width:100%;max-height:360px;object-fit:contain;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.12);"></div>
+  <div class="col-r" style="text-align:center;"><img src="../submissions/mjshin/app_screen2.png" style="max-width:100%;max-height:360px;object-fit:contain;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.12);"></div>
+</div>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+# 예시 결과
+<p class="slide-sub">실제 강사 데이터로 발굴한 키프레임 3가지</p>
+
+<table><thead><tr><th>강사 배경</th><th>시그니처명</th><th>한 줄 정의</th></tr></thead><tbody><tr><td style="font-size:0.78em;">광고 포토그래퍼 → 스마트폰 전환 → 인스타 8.7만 팔로워</td><td><strong>스마트폰 브랜드</strong></td><td style="font-size:0.8em;">장비 없이도 3개월 안에 팔로워 1만짜리 브랜드 계정을 만들 수 있는 이유</td></tr><tr><td style="font-size:0.78em;">호텔 쉐프 → 카페 2억 실패 → 재창업 → 창업 강의</td><td><strong>3일 현장법</strong></td><td style="font-size:0.8em;">창업 전 목표 자리에서 3일 동안 유동인구·경쟁 카페를 직접 체크하는 방법</td></tr><tr><td style="font-size:0.78em;">직장인 유튜버 → 200편 업로드/구독자 500 → 채널 리셋 → 2…</td><td><strong>이상형 구독자</strong></td><td style="font-size:0.8em;">많은 사람이 아니라 딱 한 사람을 위해 만들면 채널이 커진다</td></tr></tbody></table>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 <!-- === /발표자: mjshin === -->
@@ -529,8 +550,8 @@ style: |
 
 <div class="two-col">
   <div class="col-l"><p class="sec-label">① 문제 상황</p><p><span class="hero-kw">자동화 · 자기복제 · 신속 학습</span></p>
-<ul><li><strong>자동화</strong>: 통화 녹음 및 미팅 기록 자동화 / 신규 고객 온보딩 자동화</li><li><strong>자기복제</strong>: 세일즈 콘텐츠 기획(무료 강의안, 상세페이지, 광고소재, 모객 콘텐츠) 제작 에이전트</li><li><strong>신속 학습</strong>: 신규 강의 주제 도메인 이해도 높일 튜터</li></ul><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><ul><li>온보딩: 고객사 LLM에 코드 입력 시 자동 구현 (부트캠프 Day 4 유사 구조)</li><li>세일즈 기획: 핵심 논리 방법론 + 자료 정교화 — 통합 스킬에서 개별 스킬로 분리해 효율화</li><li>기록: 녹음파일 자동 전달 — 현재 MacroDroid로 자동화 중</li><li>도메인 이해: 고속 학습 시스템 프롬프트 제작 + 고객사 강의 주제의 솔루션 페인포인트 타겟 확인 후 해당 내용 기반으로 학습 튜터 생성</li></ul></div>
-  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>온보딩</td><td>개별 온·오프 미팅 외 대안 없음</td></tr><tr><td>세일즈 기획</td><td>매번 새로 기획·문서화·미팅 반복</td></tr><tr><td>기록</td><td>매번 직접 기록</td></tr><tr><td>도메인 이해</td><td>파편화된 정보 수동 리서치</td></tr></tbody></table></div>
+<ul><li><strong>자동화</strong>: 통화 녹음 및 미팅 기록 자동화 / 신규 고객 온보딩 자동화</li><li><strong>자기복제</strong>: 세일즈 콘텐츠 기획(무료 강의안, 상세페이지, 광고소재, 모객 콘텐츠) 제작 에이전트</li><li><strong>신속 학습</strong>: 신규 강의 주제 도메인 이해도 높일 튜터</li></ul><hr class="sec-divider"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>온보딩</td><td>개별 온·오프 미팅 외 대안 없음</td></tr><tr><td>세일즈 기획</td><td>매번 새로 기획·문서화·미팅 반복</td></tr><tr><td>기록</td><td>매번 직접 기록</td></tr><tr><td>도메인 이해</td><td>파편화된 정보 수동 리서치</td></tr></tbody></table></div>
+  <div class="col-r"><p class="sec-label">③ 지향했던 방향성</p><ul><li>온보딩: 고객사 LLM에 코드 입력 시 자동 구현 (부트캠프 Day 4 유사 구조)</li><li>세일즈 기획: 핵심 논리 방법론 + 자료 정교화 — 통합 스킬에서 개별 스킬로 분리해 효율화</li><li>기록: 녹음파일 자동 전달 — 현재 MacroDroid로 자동화 중</li><li>도메인 이해: 고속 학습 시스템 프롬프트 제작 + 고객사 강의 주제의 솔루션 페인포인트 타겟 확인 후 해당 내용 기반으로 학습 튜터 생성</li></ul></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -574,8 +595,8 @@ style: |
 <p class="slide-sub">고객사 정보가 리드 조사 시점과 실제 컨택 시점 사이에 달라질 수 있어, 컨택 직전에 최신화가 필요했다.</p>
 
 <div class="two-col">
-  <div class="col-l"><p class="sec-label">① 문제 상황</p><ol><li>고객사 정보가 리드 조사 시점과 실제 컨택 시점 사이에 달라질 수 있어, 컨택 직전에 최신화가 필요했다.</li><li>고객사 정보를 찾는 데 드는 시간이 커서 이 리소스를 줄일 필요가 있었다.</li><li>들어온 지 얼마 되지 않은 시점에는 안정적인 스크립트 톤으로 처음 응대하고, 익숙해진 뒤에는 자유롭게 소통하는 여정을 감안했을 때 필요한 과정이라고 판단했다. 동시에 추후 신입 교육 자료의 토대로도 쓰일 수 있다고 보아, 세일즈 온보딩 자료에 활용할 수 있겠다고 판단했다.</li></ol><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><ul><li>단순 작업에 드는 리소스를 줄이고,</li><li>스크립트를 통해 고객 컨택 응대를 안정화한 뒤,</li><li>이후 같은 스크립트·절차를 신입 교육 자료로 활용할 수 있도록 만들고 싶었다.</li></ul></div>
-  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><p>서현님 리드 확인, 그리고 고객 컨택 전 구글링 작업을 진행하는 과정에서 리소스 소모가 컸다.</p></div>
+  <div class="col-l"><p class="sec-label">① 문제 상황</p><ol><li>고객사 정보가 리드 조사 시점과 실제 컨택 시점 사이에 달라질 수 있어, 컨택 직전에 최신화가 필요했다.</li><li>고객사 정보를 찾는 데 드는 시간이 커서 이 리소스를 줄일 필요가 있었다.</li><li>들어온 지 얼마 되지 않은 시점에는 안정적인 스크립트 톤으로 처음 응대하고, 익숙해진 뒤에는 자유롭게 소통하는 여정을 감안했을 때 필요한 과정이라고 판단했다. 동시에 추후 신입 교육 자료의 토대로도 쓰일 수 있다고 보아, 세일즈 온보딩 자료에 활용할 수 있겠다고 판단했다.</li></ol><hr class="sec-divider"><p class="sec-label">② 기존 방식의 병목</p><p>서현님 리드 확인, 그리고 고객 컨택 전 구글링 작업을 진행하는 과정에서 리소스 소모가 컸다.</p></div>
+  <div class="col-r"><p class="sec-label">③ 지향했던 방향성</p><ul><li>단순 작업에 드는 리소스를 줄이고,</li><li>스크립트를 통해 고객 컨택 응대를 안정화한 뒤,</li><li>이후 같은 스크립트·절차를 신입 교육 자료로 활용할 수 있도록 만들고 싶었다.</li></ul></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -619,8 +640,8 @@ style: |
 <p class="slide-sub">단계마다 이전 히스토리를 직접 찾아 복붙해야 했음. 상품 기획 → 랜딩 페이지 → 광고 소재 → 강의안 → CRM 문자까지 이어지는 5개 레이어</p>
 
 <div class="two-col">
-  <div class="col-l"><p class="sec-label">① 문제 상황</p><p>단계마다 이전 히스토리를 직접 찾아 복붙해야 했음. 상품 기획 → 랜딩 페이지 → 광고 소재 → 강의안 → CRM 문자까지 이어지는 5개 레이어가 각각 단절되어 있었고, 매 단계마다 "이전에 뭐라고 했더라"를 다시 찾는 반복 작업이 발생.</p><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><p>데이터 → 기획 → 메시지 → 콘텐츠가 하나의 논리적 흐름으로 자동 연결되는 구조. 고객사 데이터만 넣으면 모든 하위 산출물이 같은 언어·논리·데이터를 기반으로 자동 생성.</p></div>
-  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><p>각 산출물이 파편화된 문서/메모/채팅에 흩어져 있어서 광고 카피를 쓸 때 기획안을, 강의안 쓸 때 광고 카피를, CRM 문자 쓸 때 강의안을 다시 찾아 붙여넣는 구조. 논리적 일관성이 사람 손에 달려 있었음.</p></div>
+  <div class="col-l"><p class="sec-label">① 문제 상황</p><p>단계마다 이전 히스토리를 직접 찾아 복붙해야 했음. 상품 기획 → 랜딩 페이지 → 광고 소재 → 강의안 → CRM 문자까지 이어지는 5개 레이어가 각각 단절되어 있었고, 매 단계마다 "이전에 뭐라고 했더라"를 다시 찾는 반복 작업이 발생.</p><hr class="sec-divider"><p class="sec-label">② 기존 방식의 병목</p><p>각 산출물이 파편화된 문서/메모/채팅에 흩어져 있어서 광고 카피를 쓸 때 기획안을, 강의안 쓸 때 광고 카피를, CRM 문자 쓸 때 강의안을 다시 찾아 붙여넣는 구조. 논리적 일관성이 사람 손에 달려 있었음.</p></div>
+  <div class="col-r"><p class="sec-label">③ 지향했던 방향성</p><p>데이터 → 기획 → 메시지 → 콘텐츠가 하나의 논리적 흐름으로 자동 연결되는 구조. 고객사 데이터만 넣으면 모든 하위 산출물이 같은 언어·논리·데이터를 기반으로 자동 생성.</p></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
