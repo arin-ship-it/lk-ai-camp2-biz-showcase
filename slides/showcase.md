@@ -486,7 +486,40 @@ style: |
 # 현재 구현 단계
 <p class="slide-sub">자동화 전·후 비교</p>
 
-<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr></tbody></table>
+<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+# 현재 구현 단계
+<p class="slide-sub">자동화 전·후 비교</p>
+
+<div class="two-col">
+  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
+  <div class="col-r"><img src="../submissions/chaeeun-jang/slide_img1.png" style="width:100%;height:100%;object-fit:contain;"></div>
+</div>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+# 현재 구현 단계
+<p class="slide-sub">자동화 전·후 비교</p>
+
+<div class="two-col">
+  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
+  <div class="col-r"><img src="../submissions/chaeeun-jang/slide_img2.png" style="width:100%;height:100%;object-fit:contain;"></div>
+</div>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+# 현재 구현 단계
+<p class="slide-sub">자동화 전·후 비교</p>
+
+<div class="two-col">
+  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
+  <div class="col-r"><img src="../submissions/chaeeun-jang/slide_img3.png" style="width:100%;height:100%;object-fit:contain;"></div>
+</div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
