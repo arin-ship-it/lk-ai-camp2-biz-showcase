@@ -391,16 +391,17 @@ style: |
 
 <div class="cover-title">Chaeeun Jang의<br>자동화 도구</div>
 <p class="cover-presenter"><strong>발표자</strong> 그로스 매니저 &nbsp;｜&nbsp; Chaeeun Jang</p>
-<div class="cover-tags"><span class="tag">매일 상시퍼널 클래스의 신청자 목</span></div>
+<div class="cover-tags"><span class="tag">상시퍼널 데이터 분석 및 보고서 </span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
 
 # 문제와 해결 방향
-<p class="slide-sub">매일 상시퍼널 클래스의 신청자 목록을 다운받아 신청자 수·완강률·결제 전환율 등을 직접 계산</p>
+<p class="slide-sub">상시퍼널 데이터 분석 및 보고서 발행 자동화</p>
 
 <div class="two-col">
-  <div class="col-l"><p class="sec-label">① 문제 상황</p><ul><li>매일 상시퍼널 클래스의 신청자 목록을 다운받아 신청자 수·완강률·결제 전환율 등을 직접 계산</li><li>고객사에 공유 보고서가 필요한 경우 일자별·주차별·월별로 정리해 노션에 옮기는 작업 반복</li><li>상시퍼널을 적용하는 고객사가 빠르게 늘어남에 따라 소요 시간이 크게 늘 것으로 예상됨</li></ul><hr class="sec-divider"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>병목</td><td>매번 수동으로 카운트 및 분석 → 일자별 추적 어려움</td></tr><tr><td>병목</td><td>파트별 이탈 시각화 불가</td></tr><tr><td>병목</td><td>고객사의 이해를 도울 차트 등 시각화 어려움</td></tr><tr><td>병목</td><td>결제 전환율 매칭 — 결제자 시트와 대조하며 추적</td></tr></tbody></table></div>
+  <div class="col-l"><p class="sec-label">① 문제 상황</p><p>상시퍼널 데이터 분석 및 보고서 발행 자동화</p>
+<ul><li>매일 상시퍼널 클래스의 신청자 목록을 다운받아 신청자 수·완강률·결제 전환율 등을 직접 계산</li><li>고객사에 공유 보고서가 필요한 경우 일자별·주차별·월별로 정리해 노션에 옮기는 작업 반복</li><li>상시퍼널을 적용하는 고객사가 빠르게 늘어남에 따라 소요 시간이 크게 늘 것으로 예상됨</li></ul><hr class="sec-divider"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>병목</td><td>매번 수동으로 카운트 및 분석 → 일자별 추적 어려움</td></tr><tr><td>병목</td><td>파트별 이탈 시각화 불가</td></tr><tr><td>병목</td><td>고객사의 이해를 도울 차트 등 시각화 어려움</td></tr><tr><td>병목</td><td>결제 전환율 매칭 — 결제자 시트와 대조하며 추적</td></tr></tbody></table></div>
   <div class="col-r"><p class="sec-label">③ 지향했던 방향성</p><p>파일을 폴더에 드롭하고 "inbox 처리해줘" 한 마디면 분석·DB 기록·보고서 생성까지 자동 완료. 숫자가 아닌 인사이트에만 집중할 수 있는 구조.</p></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
