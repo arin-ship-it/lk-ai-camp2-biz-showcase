@@ -529,15 +529,15 @@ style: |
 
 <div class="two-col">
   <div class="col-l"><p class="sec-label">① 문제 상황</p><p><span class="hero-kw">자동화 · 자기복제 · 신속 학습</span></p>
-<ul><li><strong>자동화</strong>: 통화 녹음 및 미팅 기록 자동화 / 신규 고객 온보딩 자동화</li><li><strong>자기복제</strong>: 세일즈 콘텐츠 기획(무료 강의안, 상세페이지, 광고소재, 모객 콘텐츠) 제작 에이전트</li><li><strong>신속 학습</strong>: 신규 강의 주제 도메인 이해도 높일 튜터</li></ul><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><ul><li>온보딩: 고객사 LLM에 코드 입력 시 자동 구현 (부트캠프 Day 4 유사 구조)</li><li>세일즈 기획: 핵심 논리 방법론 + 자료 정교화 — 통합 스킬에서 개별 스킬로 분리해 효율화</li><li>기록: 녹음파일 자동 전달 — 현재 MacroDroid로 자동화 중</li><li>도메인 이해: 주제별 라이브러리화 + 교육학 기반 학습 시스템 프롬프트</li></ul></div>
-  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>온보딩</td><td>개별 온·오프 미팅 외 대안 없음</td></tr><tr><td>세일즈 기획</td><td>매번 새로 기획·문서화·미팅 반복</td></tr><tr><td>기록</td><td>매번 직접 기록</td></tr><tr><td>도메인 이해</td><td>파편화된 정보 수동 리서치</td></tr><tr><td>병목</td><td>(문제별 세부 병목 — 추후 추가 예정)</td></tr></tbody></table></div>
+<ul><li><strong>자동화</strong>: 통화 녹음 및 미팅 기록 자동화 / 신규 고객 온보딩 자동화</li><li><strong>자기복제</strong>: 세일즈 콘텐츠 기획(무료 강의안, 상세페이지, 광고소재, 모객 콘텐츠) 제작 에이전트</li><li><strong>신속 학습</strong>: 신규 강의 주제 도메인 이해도 높일 튜터</li></ul><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><ul><li>온보딩: 고객사 LLM에 코드 입력 시 자동 구현 (부트캠프 Day 4 유사 구조)</li><li>세일즈 기획: 핵심 논리 방법론 + 자료 정교화 — 통합 스킬에서 개별 스킬로 분리해 효율화</li><li>기록: 녹음파일 자동 전달 — 현재 MacroDroid로 자동화 중</li><li>도메인 이해: 고속 학습 시스템 프롬프트 제작 + 고객사 강의 주제의 솔루션 페인포인트 타겟 확인 후 해당 내용 기반으로 학습 튜터 생성</li></ul></div>
+  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>온보딩</td><td>개별 온·오프 미팅 외 대안 없음</td></tr><tr><td>세일즈 기획</td><td>매번 새로 기획·문서화·미팅 반복</td></tr><tr><td>기록</td><td>매번 직접 기록</td></tr><tr><td>도메인 이해</td><td>파편화된 정보 수동 리서치</td></tr></tbody></table></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
 
 # 현재 구현 단계
-<p class="slide-sub">자동화 전·후 비교</p>
+<span class="hero-kw">역시 쉽지 않았다</span>
 
 <table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>개별 온·오프 미팅 외 대안 없음</td><td class="m-mid">온보딩</td><td>신규 온보딩 자동화: 미진행</td></tr><tr><td>매번 새로 기획·문서화·미팅 반복</td><td class="m-mid">세일즈 기획</td><td>세일즈 기획 자동화: 무료 강의안 기획부터 일부 진행</td></tr><tr><td>매번 직접 기록</td><td class="m-mid">기록</td><td>기록 자동화: 녹음파일 드라이브 업로드 구간 해결 중</td></tr><tr><td>파편화된 정보 수동 리서치</td><td class="m-mid">도메인 이해</td><td>학습 튜터: 미진행</td></tr></tbody></table>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
