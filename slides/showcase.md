@@ -351,53 +351,6 @@ style: |
 
 ---
 
-<!-- header: "**ARIN** · LK AI Camp 2기" -->
-<!-- === 발표자: Arin === -->
-
-<!-- _class: cover -->
-
-<div class="cover-title">Arin의<br>자동화 도구</div>
-<p class="cover-presenter"><strong>발표자</strong> 콘텐츠 디자이너 &nbsp;｜&nbsp; Arin</p>
-<div class="cover-tags"><span class="tag">주 30분 → 0분</span><span class="tag">4단계 자동화 워크플로우</span><span class="tag">디자인 진행 상황 리스트업 & 정리</span></div>
-<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
----
-
-# 문제와 해결 방향
-<p class="slide-sub">배경) 로켓런칭 팀 내에서 매주 미팅을 진행하는데, 미팅 전 노션에 작업 현황을 업데이트해야 하는 작업이 필요했음.</p>
-
-<div class="two-col">
-  <div class="col-l"><p class="sec-label">① 문제 상황</p><p>배경) 로켓런칭 팀 내에서 매주 미팅을 진행하는데, 미팅 전 노션에 작업 현황을 업데이트해야 하는 작업이 필요했음.</p>
-<p>문제) 여러 곳에서 들어오는 디자인 요청을 취합, 정리하는 과정에서 약 30분가량의 시간 소요</p><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><p>파편화된 커뮤니케이션 내용을 취합해 1) 디자인 진행 상황 리스트업 & 정리, 2) 디자인 타임라인을 짜주는 자동화를 만들자!</p></div>
-  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>요청 경로 파편화</td><td>Slack 2개 채널 + 개인 DM + Notion 등 4개 채널에서 각각 수동 확인</td></tr><tr><td>요청 형식의 다양성</td><td>요청자마다 요청 형식이 달라 필요한 정보를 다시 확인하거나 정리해야 했음</td></tr><tr><td>수동 복제 관리</td><td>전주 Task list를 복제 → 차주 Task list로 이름, 내용 수정 → 공유하는 반복적인 수동 관리</td></tr><tr><td>정보 누락</td><td>피그마, 기획안, 고객사 클래스 링크 등의 정보를 누락해서 작성</td></tr></tbody></table></div>
-</div>
-<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
----
-
-# 현재 구현 단계
-<p class="slide-sub">자동화 전·후 비교</p>
-
-<div class="flow-wrap"><div class="flow-step"><div class="flow-num">01</div>수집</div><div class="flow-step"><div class="flow-num">02</div>필터</div><div class="flow-step"><div class="flow-num">03</div>Human</div><div class="flow-step"><div class="flow-num">04</div>Figma 플러그인</div></div>
-<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>Slack 2개 채널 + 개인 DM + Notion 등 4개 채널에서 각각 수동 확인</td><td class="m-mid">요청 경로 파편화</td><td>디자인 진행 상황 리스트업 & 정리</td></tr><tr><td>요청자마다 요청 형식이 달라 필요한 정보를 다시 확인하거나 정리해야 했음</td><td class="m-mid">요청 형식의 다양성</td><td>수집 스케줄: 월~금 9, 10, 11, 13, 14, 15, 16, 17, 18, 19시 정각 (…</td></tr><tr><td>전주 Task list를 복제 → 차주 Task list로 이름, 내용 수정 → 공유하는 반복적인 …</td><td class="m-mid">수동 복제 관리</td><td>1차, 2차 시안 공유와 같은 Work Flow 날짜 자동 계산해서 작성</td></tr><tr><td>피그마, 기획안, 고객사 클래스 링크 등의 정보를 누락해서 작성</td><td class="m-mid">정보 누락</td><td>미완료 Task 자동 이월 로직</td></tr><tr><td>—</td><td class="m-mid">비교</td><td>디자인 타임라인 정리</td></tr></tbody></table>
-<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
----
-
-# 추후 과제 &amp; 소감
-<p class="slide-sub">앞으로 발전시키고 싶은 것, 그리고 이번 캠프를 통해 달라진 것</p>
-
-<p class="sec-label">⑤ 추후 과제</p>
-<p>추가적인 디자인 피드백 사항도 자동 취합해서 정리되도록 구현</p>
-<hr class="sec-divider">
-<p class="sec-label">⑥ 소감</p>
-<p>아직도 기본적인 개념에 대한 확립이 미흡하다고는 생각하지만, 그럼에도 불구하고 이런 나도 자동화 도구를 만들 수 있다는 뿌듯한 경험을 했습니다. 클로드는 내가 만들고자 하는 뚜렷한 작업 플로우와 디테일한 조건만 잘 제시해준다면 누구나 쉽게 만들 수 있겠다는 가능성도 체감할 수 있었습니다.</p>
-<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
-<!-- === /발표자: Arin === -->
-
----
-
 <!-- header: "**CHAEEUN JANG** · LK AI Camp 2기" -->
 <!-- === 발표자: Chaeeun Jang === -->
 
