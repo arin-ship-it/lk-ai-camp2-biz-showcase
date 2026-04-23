@@ -277,6 +277,12 @@ tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
   margin-bottom: 2px;
 }
 
+/* ─── 인트로 프레임 내 활용 유형 표 ────────── */
+.mini-table { font-size: 0.72em; margin-top: 14px; }
+.mini-table th { padding: 6px 10px; font-size: 0.9em; }
+.mini-table td { padding: 6px 10px; font-size: 0.95em; }
+.mini-note { margin-top: 10px; font-size: 0.78em; color: var(--c-ink-dim); line-height: 1.5; }
+
 /* ─── 비교표 (구현 슬라이드) ────────────────── */
 .cmp-table { width: 100%; border-collapse: collapse; font-size: 0.78em; }
 .cmp-table th { padding: 10px 14px; text-align: center; font-weight: 700; font-size: 0.9em; }

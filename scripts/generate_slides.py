@@ -13,9 +13,11 @@ HTML 빌드:
     bash scripts/build_slides.sh --html-only
 """
 
+import base64
 import re
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 REPO_ROOT       = Path(__file__).parent.parent
@@ -27,7 +29,10 @@ THEME_CSS_PATH  = SLIDES_DIR / "theme.css"
 
 # 인트로 전용 폴더 (일반 발표자 템플릿과 다른 구조로 파싱)
 INTRO_FOLDER_NAMES = {"인트로", "intro"}
-INTRO_HEADER       = "**LK AI Camp 2기** · 2026.04.23"
+INTRO_HEADER       = "**LK AI Native Camp 2기** · 2026.04.23"
+
+# 발표자 슬라이드 순서 (인트로 이후 등장 순서). 여기 없는 폴더는 뒤쪽에 이름순으로 붙는다.
+PRESENTER_ORDER = ["nova", "chaeeun-jang", "mjshin", "Evan", "Bryan-ji"]
 
 # 발표자별 직무 매핑 (name은 소문자로 비교)
 # 새 발표자 추가 시 여기에 등록하세요.
@@ -36,9 +41,18 @@ ROLE_BY_NAME = {
     "mjshin":       "그로우 매니저",
     "nova":         "그로우 매니저",
     "evan":         "세일즈 매니저",
-    "brian":        "세일즈 컨설턴트",
+    "bryan-ji":     "세일즈 컨설턴트",
 }
 DEFAULT_ROLE = "콘텐츠 디자이너"
+
+
+def _presenter_sort_key(dirname: str):
+    """PRESENTER_ORDER 순서대로 정렬. 명시 안 된 폴더는 뒤쪽에 이름순."""
+    low = dirname.lower()
+    for i, n in enumerate(PRESENTER_ORDER):
+        if n.lower() == low:
+            return (0, i)
+    return (1, dirname)
 
 
 def role_for(name: str) -> str:
@@ -81,7 +95,7 @@ def build_marp_header() -> str:
 
 def person_header(name: str) -> str:
     """슬라이드 상단 헤더바에 들어갈 발표자 태그 텍스트."""
-    return f"**{name.upper()}** · LK AI Camp 2기"
+    return f"**{name.upper()}** · LK AI Native Camp 2기"
 
 
 # ── 파싱 유틸 ─────────────────────────────────────────────────
@@ -466,38 +480,60 @@ def slide_intro_cover(s: dict) -> str:
     )
 
 
+def _photo_data_uri(src: Path, target_w: int = 800) -> str:
+    """sips로 target_w px 로 축소 후 base64 data URI 반환. 실패 시 빈 문자열."""
+    if not src.exists():
+        return ""
+    try:
+        with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tf:
+            tmp = Path(tf.name)
+        subprocess.run(
+            ["sips", "--resampleWidth", str(target_w), str(src), "--out", str(tmp)],
+            check=True, capture_output=True,
+        )
+        data = base64.b64encode(tmp.read_bytes()).decode("ascii")
+        return f"data:image/jpeg;base64,{data}"
+    except Exception:
+        return ""
+    finally:
+        try:
+            tmp.unlink()
+        except Exception:
+            pass
+
+
 def slide_intro_photos(s: dict) -> str:
-    """1기 현장 사진 그리드 (3×3)"""
+    """1기 현장 사진 그리드 (3×3) — 이미지를 base64로 내장해 경로 문제 우회"""
     text = s.get("사진", "")
-    # 파일명 줄 파싱
     filenames = [
         ln.strip() for ln in text.splitlines()
         if ln.strip() and not ln.strip().startswith("<!--") and "-->" not in ln.strip()
         and re.match(r'.+\.(jpg|jpeg|png|gif|webp)$', ln.strip(), re.IGNORECASE)
     ]
-    # 캡션 추출
     caption_m = re.search(r'\*\*캡션\*\*\s*[:：]?\s*(.+)', text)
     caption = caption_m.group(1).strip() if caption_m else "2025.03.13 · 1기 현장"
 
-    # 이미지 경로 (showcase.md 기준 상대경로)
-    IMG_BASE = "../submissions/인트로"
-    imgs = filenames[:9]  # 최대 9장
+    INTRO_DIR = SUBMISSIONS_DIR / "인트로"
+    imgs = filenames[:9]
 
-    # 3×3 그리드 HTML (셀 높이 명시: 3행 × 138px = 414px + gap 10px = ~440px)
+    CELL_W = "370px"
     CELL_H = "138px"
     cells = ""
     for fn in imgs:
-        cells += (
-            f'<div style="overflow:hidden;height:{CELL_H}">'
-            f'<img src="{IMG_BASE}/{fn}" '
-            f'style="width:100%;height:100%;object-fit:cover;display:block">'
-            f'</div>'
-        )
+        uri = _photo_data_uri(INTRO_DIR / fn)
+        if uri:
+            cells += (
+                f'<div style="width:{CELL_W};height:{CELL_H};overflow:hidden;display:inline-block">'
+                f'<img src="{uri}" style="width:{CELL_W};height:{CELL_H};object-fit:cover;display:block;max-width:none;max-height:none">'
+                f'</div>'
+            )
+        else:
+            cells += f'<div style="width:{CELL_W};height:{CELL_H};background:var(--c-cream-band)"></div>'
     for _ in range(9 - len(imgs)):
-        cells += f'<div style="background:var(--c-cream-band);height:{CELL_H}"></div>'
+        cells += f'<div style="width:{CELL_W};height:{CELL_H};background:var(--c-cream-band)"></div>'
 
     grid_html = (
-        f'<div style="display:grid;grid-template-columns:repeat(3,1fr);'
+        f'<div style="display:grid;grid-template-columns:repeat(3,{CELL_W});'
         f'grid-template-rows:repeat(3,{CELL_H});gap:5px;margin-top:8px">'
         f'{cells}'
         f'</div>'
@@ -511,16 +547,50 @@ def slide_intro_photos(s: dict) -> str:
     )
 
 
+def _render_table_and_paragraphs(text: str) -> str:
+    """GFM 표와 일반 단락이 섞인 블록을 HTML로 변환 (인트로 1기 활용 유형용)."""
+    lines = text.splitlines()
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        ln = lines[i]
+        stripped = ln.strip()
+        if (
+            stripped.startswith("|")
+            and i + 1 < len(lines)
+            and re.match(r'^\s*\|[\s\-:|]+\|\s*$', lines[i + 1])
+        ):
+            headers = [c.strip() for c in stripped.strip("|").split("|")]
+            i += 2
+            rows: list[list[str]] = []
+            while i < len(lines) and lines[i].strip().startswith("|"):
+                rows.append([c.strip() for c in lines[i].strip().strip("|").split("|")])
+                i += 1
+            thead = "<thead><tr>" + "".join(f"<th>{h}</th>" for h in headers) + "</tr></thead>"
+            tbody = "<tbody>" + "".join(
+                "<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows
+            ) + "</tbody>"
+            out.append(f'<table class="mini-table">{thead}{tbody}</table>')
+            continue
+        if stripped:
+            inline = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', stripped)
+            out.append(f'<p class="mini-note">{inline}</p>')
+        i += 1
+    return "\n".join(out)
+
+
 def slide_intro_frame(s: dict) -> str:
     """프레임: 두 기수 공통 메시지 + 2열 (1기|2기) + 핵심 문장"""
     text = s.get("프레임", "")
+    activity_raw = s.get("1기 활용 유형", "")
+    activity_html = _render_table_and_paragraphs(activity_raw) if activity_raw else ""
     items = parse_list_items(text)
 
     camp1 = next((it for it in items if re.match(r'^\s*1기', it)), "")
     camp2 = next((it for it in items if re.match(r'^\s*2기', it)), "")
 
     def split_date_body(it: str):
-        # "1기 (2025.03.13): ..." → label="1기", date="2025.03.13", body="..."
+        # "1기 (2026.03.13): ..." → label="1기", date="2026.03.13", body="..."
         m = re.match(r'^\s*(\S+기)\s*[（(]([^）)]+)[）)]\s*[:：]\s*(.+)$', it)
         if m:
             return m.group(1), m.group(2), m.group(3)
@@ -537,18 +607,19 @@ def slide_intro_frame(s: dict) -> str:
     closing_paras = [p for p in paragraphs if not p.startswith("-") and not p.startswith("*")]
     closing_html = "".join(md_to_html(p) for p in closing_paras[-2:]) if closing_paras else ""
 
-    def col(label, date, body):
+    def col(label, date, body, extra=""):
         date_span = f'<span style="font-size:0.72em;color:var(--c-ink-dim);margin-left:6px">{date}</span>' if date else ""
         return (
             f'<p class="sec-label">{label}{date_span}</p>'
             f'{md_to_html(body) if body else ""}'
+            f'{extra}'
         )
 
     return (
         f'# 두 기수의 공통점 — AI로 일이 달라졌다\n'
         f'<p class="slide-sub">1기가 증명했고, 2기는 그 사람이 늘어난 것입니다.</p>\n\n'
         f'<div class="two-col">\n'
-        f'  <div class="col-l">{col(l1 or "1기", d1, b1)}</div>\n'
+        f'  <div class="col-l">{col(l1 or "1기", d1, b1, activity_html)}</div>\n'
         f'  <div class="col-r">{col(l2 or "2기", d2, b2)}</div>\n'
         f'</div>\n'
         f'<hr class="sec-divider">\n'
@@ -618,13 +689,14 @@ def slide_intro_preview(s: dict) -> str:
     else:
         closing_html = ""
 
+    speaker_label_suffix = f" ({len(speaker_items)}명)" if speaker_items else ""
     return (
         f'# 오늘의 관람 포인트\n'
-        f'<p class="slide-sub">\'AI를 썼구나\'가 아니라 \'일하는 순서를 바꿨구나\'를 봐주세요.</p>\n\n'
+        f'<p class="slide-sub">\'AI를 썼구나\'가 아니라 \'일하는 방식이 이렇게 달라지고 있구나\'를 봐주세요.</p>\n\n'
         f'<p class="sec-label">보는 법</p>\n'
         f'{view_html}\n'
         f'<hr class="sec-divider">\n'
-        f'<p class="sec-label">오늘의 발표자 (4명)</p>\n'
+        f'<p class="sec-label">오늘의 발표자{speaker_label_suffix}</p>\n'
         f'{speakers_html}\n'
         f'{closing_html}\n'
         + FOOTER_HTML
@@ -725,7 +797,11 @@ def main():
 
     persons = []
     intro_sections = None
-    for person_dir in sorted(SUBMISSIONS_DIR.iterdir()):
+    person_dirs = sorted(
+        [p for p in SUBMISSIONS_DIR.iterdir() if p.is_dir()],
+        key=lambda p: _presenter_sort_key(p.name),
+    )
+    for person_dir in person_dirs:
         if not person_dir.is_dir():
             continue
         if person_dir.name.lower() in excludes:
