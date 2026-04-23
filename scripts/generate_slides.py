@@ -202,6 +202,24 @@ def md_to_html(text: str) -> str:
     out, i = [], 0
     while i < len(lines):
         ln = lines[i].strip()
+        # GFM 표: 헤더 다음 줄이 구분선( | --- | --- | )이면 표로 파싱
+        if (
+            ln.startswith("|")
+            and i + 1 < len(lines)
+            and re.match(r'^\s*\|[\s\-:|]+\|\s*$', lines[i + 1])
+        ):
+            headers = [c.strip() for c in ln.strip("|").split("|")]
+            i += 2
+            rows: list[list[str]] = []
+            while i < len(lines) and lines[i].strip().startswith("|"):
+                rows.append([c.strip() for c in lines[i].strip().strip("|").split("|")])
+                i += 1
+            thead = "<thead><tr>" + "".join(f"<th>{h}</th>" for h in headers) + "</tr></thead>"
+            tbody = "<tbody>" + "".join(
+                "<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows
+            ) + "</tbody>"
+            out.append(f"<table>{thead}{tbody}</table>")
+            continue
         if re.match(r'^[-*]\s+', ln):
             items = []
             while i < len(lines) and re.match(r'^[-*]\s+', lines[i].strip()):
