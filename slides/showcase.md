@@ -304,6 +304,12 @@ style: |
   }
   .cmp-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
   .cmp-table td.m-mid { background: #ebe5de; color: var(--c-ink-muted); font-size: 0.82em; }
+
+  /* ─── 인트로 오늘의 발표자 표 (행이 많아 조밀하게) ─── */
+  .speakers-table { font-size: 0.72em; }
+  .speakers-table th { padding: 6px 12px; font-size: 0.88em; }
+  .speakers-table td { padding: 5px 12px; line-height: 1.35; }
+  .speakers-table td.m-mid { font-size: 0.78em; }
 ---
 
 <!--
@@ -357,7 +363,7 @@ style: |
 <ul><li>(X) "아, 저 사람은 저기서 AI를 썼구나"</li><li>(O) "저 사람은 <strong>일하는 방식이 이렇게 달라지고 있구나</strong>"</li></ul>
 <hr class="sec-divider">
 <p class="sec-label">오늘의 발표자 (5명)</p>
-<table class="cmp-table"><thead><tr><th class="h-left">발표자</th><th class="h-mid">직무</th><th class="h-right">주제</th></tr></thead><tbody><tr><td><strong>Nova</strong></td><td class="m-mid">그로우 매니저</td><td>기획-콘텐츠 파이프라인</td></tr><tr><td><strong>Chaeeun Jang</strong></td><td class="m-mid">그로우 매니저</td><td>상시퍼널 데이터 자동화</td></tr><tr><td><strong>mjshin</strong></td><td class="m-mid">그로우 매니저</td><td>매니저 리소스 자동화</td></tr><tr><td><strong>Evan</strong></td><td class="m-mid">세일즈 매니저</td><td>신규 고객 온보딩 자동화</td></tr><tr><td><strong>Bryan-ji</strong></td><td class="m-mid">세일즈 컨설턴트</td><td>고객 컨택 리서치 & 스크립트 자동화</td></tr></tbody></table>
+<table class="cmp-table speakers-table"><thead><tr><th class="h-left">발표자</th><th class="h-mid">직무</th><th class="h-right">주제</th></tr></thead><tbody><tr><td><strong>Chaeeun Jang</strong></td><td class="m-mid">그로우 매니저</td><td>상시퍼널 데이터 자동화</td></tr><tr><td><strong>mjshin</strong></td><td class="m-mid">그로우 매니저</td><td>매니저 리소스 자동화</td></tr><tr><td><strong>Evan</strong></td><td class="m-mid">세일즈 매니저</td><td>신규 고객 온보딩 자동화</td></tr><tr><td><strong>Bryan-ji</strong></td><td class="m-mid">세일즈 컨설턴트</td><td>고객 컨택 리서치 & 스크립트 자동화</td></tr><tr><td><strong>Nova</strong></td><td class="m-mid">그로우 매니저</td><td>기획-콘텐츠 파이프라인</td></tr></tbody></table>
 <blockquote><p>편하게 들으시고, 끝나고 <strong>"나라면 어디에 적용할까"</strong> 하나만 챙겨 가시면 오늘 세션은 성공입니다.</p></blockquote>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -366,56 +372,11 @@ style: |
 ---
 
 <!-- _class: divider -->
-<!-- _header: "**NOVA** · LK AI Native Camp 2기" -->
+<!-- _header: "**CHAEEUN JANG** · LK AI Native Camp 2기" -->
 
 # 우리가 만든 것들
 
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
----
-
-<!-- header: "**NOVA** · LK AI Native Camp 2기" -->
-<!-- === 발표자: Nova === -->
-
-<!-- _class: cover -->
-
-<div class="cover-title">Nova의<br>자동화 도구</div>
-<p class="cover-presenter"><strong>발표자</strong> 그로우 매니저 &nbsp;｜&nbsp; Nova</p>
-<div class="cover-tags"><span class="tag">단계마다 이전 히스토리를 직접 찾</span></div>
-<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
----
-
-# 문제와 해결 방향
-<p class="slide-sub">단계마다 이전 히스토리를 직접 찾아 복붙해야 했음. 상품 기획 → 랜딩 페이지 → 광고 소재 → 강의안 → CRM 문자까지 이어지는 5개 레이어</p>
-
-<div class="two-col">
-  <div class="col-l"><p class="sec-label">① 문제 상황</p><p>단계마다 이전 히스토리를 직접 찾아 복붙해야 했음. 상품 기획 → 랜딩 페이지 → 광고 소재 → 강의안 → CRM 문자까지 이어지는 5개 레이어가 각각 단절되어 있었고, 매 단계마다 "이전에 뭐라고 했더라"를 다시 찾는 반복 작업이 발생.</p><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><p>데이터 → 기획 → 메시지 → 콘텐츠가 하나의 논리적 흐름으로 자동 연결되는 구조. 고객사 데이터만 넣으면 모든 하위 산출물이 같은 언어·논리·데이터를 기반으로 자동 생성.</p></div>
-  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><p>각 산출물이 파편화된 문서/메모/채팅에 흩어져 있어서 광고 카피를 쓸 때 기획안을, 강의안 쓸 때 광고 카피를, CRM 문자 쓸 때 강의안을 다시 찾아 붙여넣는 구조. 논리적 일관성이 사람 손에 달려 있었음.</p></div>
-</div>
-<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
----
-
-# 현재 구현 단계
-<p class="slide-sub">자동화 전·후 비교</p>
-
-<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>—</td><td class="m-mid">비교</td><td>—</td></tr></tbody></table>
-<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
----
-
-# 추후 과제 &amp; 소감
-<p class="slide-sub">앞으로 발전시키고 싶은 것, 그리고 이번 캠프를 통해 달라진 것</p>
-
-<p class="sec-label">⑤ 추후 과제</p>
-<ul><li>우두머리 `02_상품_로드맵.md` 채우기 → 타겟분석 + 유료 상품 기획서 생성 테스트</li><li>01 디자인 기획안 레이어 자동화 설계 — 기획서가 완성되면 랜딩 페이지·광고 카피를 자동 파생시키는 구조</li><li>03 CRM 레이어 연결 — 기획 데이터가 사전/사후 문자 자동 생성까지 이어지는 파이프라인</li><li>루루이펙트·성장연구소 등 다른 고객사에 동일 구조 복제</li></ul>
-<hr class="sec-divider">
-<p class="sec-label">⑥ 소감</p>
-<p>"산출물을 만드는 게 아니라 산출물들이 연결되는 구조를 만들면, 이후 작업이 빨라진다." 지금까지 한 작업의 핵심은 각 기획 파일이 서로를 참조하는 의존성 구조를 코드처럼 명문화한 것. 이 구조가 잡히면 01~03 레이어도 같은 방식으로 확장 가능함.</p>
-<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
-
-<!-- === /발표자: Nova === -->
 
 ---
 
@@ -635,3 +596,48 @@ style: |
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 <!-- === /발표자: Bryan-ji === -->
+
+---
+
+<!-- header: "**NOVA** · LK AI Native Camp 2기" -->
+<!-- === 발표자: Nova === -->
+
+<!-- _class: cover -->
+
+<div class="cover-title">Nova의<br>자동화 도구</div>
+<p class="cover-presenter"><strong>발표자</strong> 그로우 매니저 &nbsp;｜&nbsp; Nova</p>
+<div class="cover-tags"><span class="tag">단계마다 이전 히스토리를 직접 찾</span></div>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+# 문제와 해결 방향
+<p class="slide-sub">단계마다 이전 히스토리를 직접 찾아 복붙해야 했음. 상품 기획 → 랜딩 페이지 → 광고 소재 → 강의안 → CRM 문자까지 이어지는 5개 레이어</p>
+
+<div class="two-col">
+  <div class="col-l"><p class="sec-label">① 문제 상황</p><p>단계마다 이전 히스토리를 직접 찾아 복붙해야 했음. 상품 기획 → 랜딩 페이지 → 광고 소재 → 강의안 → CRM 문자까지 이어지는 5개 레이어가 각각 단절되어 있었고, 매 단계마다 "이전에 뭐라고 했더라"를 다시 찾는 반복 작업이 발생.</p><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><p>데이터 → 기획 → 메시지 → 콘텐츠가 하나의 논리적 흐름으로 자동 연결되는 구조. 고객사 데이터만 넣으면 모든 하위 산출물이 같은 언어·논리·데이터를 기반으로 자동 생성.</p></div>
+  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><p>각 산출물이 파편화된 문서/메모/채팅에 흩어져 있어서 광고 카피를 쓸 때 기획안을, 강의안 쓸 때 광고 카피를, CRM 문자 쓸 때 강의안을 다시 찾아 붙여넣는 구조. 논리적 일관성이 사람 손에 달려 있었음.</p></div>
+</div>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+# 현재 구현 단계
+<p class="slide-sub">자동화 전·후 비교</p>
+
+<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>—</td><td class="m-mid">비교</td><td>—</td></tr></tbody></table>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+---
+
+# 추후 과제 &amp; 소감
+<p class="slide-sub">앞으로 발전시키고 싶은 것, 그리고 이번 캠프를 통해 달라진 것</p>
+
+<p class="sec-label">⑤ 추후 과제</p>
+<ul><li>우두머리 `02_상품_로드맵.md` 채우기 → 타겟분석 + 유료 상품 기획서 생성 테스트</li><li>01 디자인 기획안 레이어 자동화 설계 — 기획서가 완성되면 랜딩 페이지·광고 카피를 자동 파생시키는 구조</li><li>03 CRM 레이어 연결 — 기획 데이터가 사전/사후 문자 자동 생성까지 이어지는 파이프라인</li><li>루루이펙트·성장연구소 등 다른 고객사에 동일 구조 복제</li></ul>
+<hr class="sec-divider">
+<p class="sec-label">⑥ 소감</p>
+<p>"산출물을 만드는 게 아니라 산출물들이 연결되는 구조를 만들면, 이후 작업이 빨라진다." 지금까지 한 작업의 핵심은 각 기획 파일이 서로를 참조하는 의존성 구조를 코드처럼 명문화한 것. 이 구조가 잡히면 01~03 레이어도 같은 방식으로 확장 가능함.</p>
+<span class="slide-footer">2026.04</span><span class="corner-sq"></span>
+
+<!-- === /발표자: Nova === -->

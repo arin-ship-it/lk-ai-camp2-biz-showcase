@@ -32,7 +32,7 @@ INTRO_FOLDER_NAMES = {"인트로", "intro"}
 INTRO_HEADER       = "**LK AI Native Camp 2기** · 2026.04.23"
 
 # 발표자 슬라이드 순서 (인트로 이후 등장 순서). 여기 없는 폴더는 뒤쪽에 이름순으로 붙는다.
-PRESENTER_ORDER = ["nova", "chaeeun-jang", "mjshin", "Evan", "Bryan-ji"]
+PRESENTER_ORDER = ["chaeeun-jang", "mjshin", "Evan", "Bryan-ji", "nova"]
 
 # 발표자별 직무 매핑 (name은 소문자로 비교)
 # 새 발표자 추가 시 여기에 등록하세요.
@@ -673,7 +673,7 @@ def slide_intro_preview(s: dict) -> str:
             else:
                 rows += f'<tr><td colspan="3">{item}</td></tr>'
         speakers_html = (
-            '<table class="cmp-table">'
+            '<table class="cmp-table speakers-table">'
             '<thead><tr>'
             '<th class="h-left">발표자</th>'
             '<th class="h-mid">직무</th>'

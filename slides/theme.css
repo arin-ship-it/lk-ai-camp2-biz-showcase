@@ -298,3 +298,9 @@ tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
 }
 .cmp-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
 .cmp-table td.m-mid { background: #ebe5de; color: var(--c-ink-muted); font-size: 0.82em; }
+
+/* ─── 인트로 오늘의 발표자 표 (행이 많아 조밀하게) ─── */
+.speakers-table { font-size: 0.72em; }
+.speakers-table th { padding: 6px 12px; font-size: 0.88em; }
+.speakers-table td { padding: 5px 12px; line-height: 1.35; }
+.speakers-table td.m-mid { font-size: 0.78em; }
