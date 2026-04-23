@@ -632,7 +632,7 @@ style: |
 
 <div class="cover-title">Nova의<br>자동화 도구</div>
 <p class="cover-presenter"><strong>발표자</strong> 그로스 매니저 &nbsp;｜&nbsp; Nova</p>
-<div class="cover-tags"><span class="tag">단계마다 이전 히스토리를 직접 찾</span></div>
+<div class="cover-tags"><span class="tag">단계마다 이전 히스토리를 직접 찾</span><span class="tag">고객사마다 매번 새로 시작</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
@@ -651,7 +651,11 @@ style: |
 # 현재 구현 단계
 <p class="slide-sub">자동화 전·후 비교</p>
 
-<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>—</td><td class="m-mid">비교</td><td>—</td></tr></tbody></table>
+<p class="sec-label">이전 기획 방식</p>
+<ul><li>고객사마다 매번 새로 시작</li><li>상품 기획 → 랜딩 → 광고 → 강의안 → CRM 각 단계 단절</li><li>이전 산출물을 수동으로 찾아 붙여넣는 구조</li><li>논리적 일관성이 사람 손에 달림</li></ul>
+<p class="sec-label">현재 기획 구조</p>
+<ul><li>Claude Projects 범용 시스템 프롬프트 완성</li><li>3단계 명령어 체계: "타겟 분석해줘" → "유료 상품 기획안 짜줘" → "무료 웨비나 기획안 짜줘"</li><li>신규 고객사 셋업 가이드 문서화 완료</li></ul>
+<table class="mini-table"><thead><tr><th>고객사</th><th>진행 상태</th></tr></thead><tbody><tr><td>성장연구소</td><td>원시데이터 → 타겟분석 → 유료 상품 기획서 파이프라인 1회 완주</td></tr><tr><td>우두머리</td><td>원시데이터 A+B 완성 → 타겟 분석 직전</td></tr></tbody></table>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---

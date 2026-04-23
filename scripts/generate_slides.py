@@ -56,6 +56,12 @@ CMP_OLD_BY_NAME = {
     "bryan": ["고객사 정보 수동 수집", "스크립트 수동 작성", "노션에 수동 저장"],
 }
 
+# "현재 구현 단계" 레이아웃 오버라이드.
+# "freeform" 지정 시 비교표 대신 ④ 마크다운을 자유 서식(굵은 소제목+불릿+표)으로 렌더링.
+IMPL_LAYOUT_BY_NAME = {
+    "nova": "freeform",
+}
+
 
 def _presenter_sort_key(dirname: str):
     """PRESENTER_ORDER 순서대로 정렬. 명시 안 된 폴더는 뒤쪽에 이름순."""
@@ -76,6 +82,10 @@ def tags_override_for(name: str):
 
 def cmp_old_override_for(name: str):
     return CMP_OLD_BY_NAME.get(name.strip().lower())
+
+
+def impl_layout_for(name: str):
+    return IMPL_LAYOUT_BY_NAME.get(name.strip().lower())
 
 
 TEMPLATE_HINTS = [
@@ -354,10 +364,67 @@ def _extract_hero_lead(text: str) -> str:
     return ""
 
 
+def _render_impl_freeform(text: str) -> str:
+    """④ 섹션을 굵은 소제목 + 불릿 + GFM 표가 섞인 자유 서식으로 렌더링.
+    Nova 등 비교표 대신 원문 구조 그대로 보여줘야 하는 발표자에 사용한다."""
+    lines = text.splitlines()
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        ln = lines[i]
+        stripped = ln.strip()
+        if not stripped:
+            i += 1
+            continue
+        # GFM 표: | h | h | 다음에 구분선
+        if (
+            stripped.startswith("|")
+            and i + 1 < len(lines)
+            and re.match(r'^\s*\|[\s\-:|]+\|\s*$', lines[i + 1])
+        ):
+            headers = [c.strip() for c in stripped.strip("|").split("|")]
+            i += 2
+            rows: list[list[str]] = []
+            while i < len(lines) and lines[i].strip().startswith("|"):
+                rows.append([c.strip() for c in lines[i].strip().strip("|").split("|")])
+                i += 1
+            thead = "<thead><tr>" + "".join(f"<th>{h}</th>" for h in headers) + "</tr></thead>"
+            tbody = "<tbody>" + "".join(
+                "<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows
+            ) + "</tbody>"
+            out.append(f'<table class="mini-table">{thead}{tbody}</table>')
+            continue
+        # 불릿 리스트
+        if re.match(r'^[-*]\s+', stripped):
+            items = []
+            while i < len(lines) and re.match(r'^[-*]\s+', lines[i].strip()):
+                item = re.sub(r'^[-*]\s+', '', lines[i].strip())
+                item = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', item)
+                items.append(item)
+                i += 1
+            out.append('<ul>' + ''.join(f'<li>{it}</li>' for it in items) + '</ul>')
+            continue
+        # 굵은 소제목 (줄 전체가 **...**)
+        bold_only = re.match(r'^\*\*(.+?)\*\*\s*$', stripped)
+        if bold_only:
+            out.append(f'<p class="sec-label">{bold_only.group(1)}</p>')
+            i += 1
+            continue
+        # 일반 단락
+        inline = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', stripped)
+        out.append(f'<p>{inline}</p>')
+        i += 1
+    return "\n".join(out)
+
+
 def _build_impl_content(name: str, s: dict) -> tuple:
     """현재 구현 단계 flow_html, cmp_html 반환 (slide_impl / slide_impl_with_image 공유)."""
     s2 = s.get("②", "")
     s4 = s.get("④", "")
+
+    # 발표자별 자유 서식 레이아웃: 비교표 대신 ④ 원문을 그대로 렌더링
+    if impl_layout_for(name) == "freeform":
+        return "", _render_impl_freeform(s4)
 
     flow_steps = extract_flow_steps(s4)
     items4_all = parse_list_items(s4)
