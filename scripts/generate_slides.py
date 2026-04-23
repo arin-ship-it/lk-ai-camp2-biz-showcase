@@ -41,9 +41,20 @@ ROLE_BY_NAME = {
     "mjshin":       "그로스 매니저",
     "nova":         "그로스 매니저",
     "evan":         "세일즈 매니저",
-    "bryan-ji":     "세일즈 컨설턴트",
+    "bryan":        "세일즈 매니저",
 }
 DEFAULT_ROLE = "콘텐츠 디자이너"
+
+# 커버 태그 오버라이드 — 지정 시 자동 추출 대신 이 값을 쓴다.
+TAGS_BY_NAME = {
+    "bryan": ["고객사 정보 조사 자동화"],
+}
+
+# "현재 구현 단계" 비교표의 '기존 방식' 열 오버라이드.
+# 원본 ②에 구체 리스트가 없을 때 이 값으로 좌측 열을 채운다.
+CMP_OLD_BY_NAME = {
+    "bryan": ["고객사 정보 수동 수집", "스크립트 수동 작성", "노션에 수동 저장"],
+}
 
 
 def _presenter_sort_key(dirname: str):
@@ -57,6 +68,14 @@ def _presenter_sort_key(dirname: str):
 
 def role_for(name: str) -> str:
     return ROLE_BY_NAME.get(name.strip().lower(), DEFAULT_ROLE)
+
+
+def tags_override_for(name: str):
+    return TAGS_BY_NAME.get(name.strip().lower())
+
+
+def cmp_old_override_for(name: str):
+    return CMP_OLD_BY_NAME.get(name.strip().lower())
 
 
 TEMPLATE_HINTS = [
@@ -209,21 +228,25 @@ def slide_cover(name: str, s: dict) -> str:
     project = first_sentence(s1) or f"{name}의 자동화 도구"
     proj_short = project[:30] + ("…" if len(project) > 30 else "")
 
-    # pill 뱃지 키워드 추출
-    tags = []
-    if s4:
-        flow_m = re.search(r'[（(]([^）)\n]+(?:→[^）)\n]+)+)[）)]', s4)
-        if flow_m:
-            steps = [st.strip() for st in flow_m.group(1).split('→') if st.strip()]
-            tags.append(f"{len(steps)}단계 자동화 워크플로우")
-        items4 = parse_list_items(s4)
-        non_flow = [it for it in items4 if '→' not in it]
-        if non_flow:
-            tags.append(non_flow[0][:20])
-    if s1 and "30분" in s1:
-        tags.insert(0, "주 30분 → 0분")
-    elif s1:
-        tags.insert(0, first_sentence(s1)[:18])
+    # pill 뱃지 키워드 추출 (발표자별 오버라이드가 있으면 그대로 사용)
+    override = tags_override_for(name)
+    if override is not None:
+        tags = list(override)
+    else:
+        tags = []
+        if s4:
+            flow_m = re.search(r'[（(]([^）)\n]+(?:→[^）)\n]+)+)[）)]', s4)
+            if flow_m:
+                steps = [st.strip() for st in flow_m.group(1).split('→') if st.strip()]
+                tags.append(f"{len(steps)}단계 자동화 워크플로우")
+            items4 = parse_list_items(s4)
+            non_flow = [it for it in items4 if '→' not in it]
+            if non_flow:
+                tags.append(non_flow[0][:20])
+        if s1 and "30분" in s1:
+            tags.insert(0, "주 30분 → 0분")
+        elif s1:
+            tags.insert(0, first_sentence(s1)[:18])
 
     tags = tags[:3]
     tags_html = ''.join(f'<span class="tag">{t}</span>' for t in tags)
@@ -316,7 +339,7 @@ def _split_top_level_arrow(text: str):
     return None
 
 
-def _build_impl_content(s: dict) -> tuple:
+def _build_impl_content(name: str, s: dict) -> tuple:
     """현재 구현 단계 flow_html, cmp_html 반환 (slide_impl / slide_impl_with_image 공유)."""
     s2 = s.get("②", "")
     s4 = s.get("④", "")
@@ -337,6 +360,11 @@ def _build_impl_content(s: dict) -> tuple:
     else:
         old_items = parse_list_items(s2)
         new_items = items4_all
+
+    # 발표자별 '기존 방식' 오버라이드: ②에 구체 리스트가 없어도 3행을 확보할 수 있게 한다.
+    override_old = cmp_old_override_for(name)
+    if override_old is not None:
+        old_items = list(override_old)
 
     if flow_steps:
         flow_divs = ""
@@ -379,7 +407,7 @@ def _build_impl_content(s: dict) -> tuple:
 
 def slide_impl(name: str, s: dict) -> str:
     """현재 구현 단계: 펜타곤 플로우 + 비교표"""
-    flow_html, cmp_html = _build_impl_content(s)
+    flow_html, cmp_html = _build_impl_content(name, s)
     return (
         f'# 현재 구현 단계\n'
         f'<p class="slide-sub">자동화 전·후 비교</p>\n\n'
@@ -392,7 +420,7 @@ def slide_impl(name: str, s: dict) -> str:
 def slide_impl_with_image(name: str, s: dict, img_rel_path: str) -> str:
     """현재 구현 단계 + 오른쪽 이미지 (2열 레이아웃) — slide_img*.png 자동 생성용.
     이미지를 크게 보여주기 위해 two-col-wide-right 클래스로 오른쪽 열을 넓힌다."""
-    flow_html, cmp_html = _build_impl_content(s)
+    flow_html, cmp_html = _build_impl_content(name, s)
     return (
         f'# 현재 구현 단계\n'
         f'<p class="slide-sub">자동화 전·후 비교</p>\n\n'

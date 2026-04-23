@@ -1,4 +1,4 @@
-# Bryan-ji AI Camp2 Showcase
+# Bryan AI Camp2 Showcase
 
 > 스크린샷, GIF, 스킬 파일 등 추가 파일이 있다면 같은 폴더에 함께 넣어주셔도 됩니다.
 
