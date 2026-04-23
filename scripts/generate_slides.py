@@ -255,14 +255,55 @@ def slide_problem(name: str, s: dict) -> str:
     )
 
 
+def _has_top_level_arrow(text: str) -> bool:
+    """괄호 밖(최상위)에 → 가 있는지."""
+    depth = 0
+    for ch in text:
+        if ch in "(（":
+            depth += 1
+        elif ch in ")）":
+            depth = max(0, depth - 1)
+        elif ch == "→" and depth == 0:
+            return True
+    return False
+
+
+def _split_top_level_arrow(text: str):
+    """괄호 밖 첫 번째 → 로 좌·우 분리. 없으면 None."""
+    depth = 0
+    for i, ch in enumerate(text):
+        if ch in "(（":
+            depth += 1
+        elif ch in ")）":
+            depth = max(0, depth - 1)
+        elif ch == "→" and depth == 0:
+            return text[:i].strip(), text[i+1:].strip()
+    return None
+
+
 def slide_impl(name: str, s: dict) -> str:
     """현재 구현 단계: 펜타곤 플로우 + 비교표"""
     s2 = s.get("②", "")
     s4 = s.get("④", "")
 
     flow_steps = extract_flow_steps(s4)
-    old_items  = parse_list_items(s2)
-    new_items  = [it for it in parse_list_items(s4) if '→' not in it]
+    items4_all = parse_list_items(s4)
+
+    # ④ 에 "기존 → 자동화" 형태(괄호 밖 →)의 쌍 불릿이 있으면 비교표로 사용
+    cmp_pairs = []
+    for it in items4_all:
+        if _has_top_level_arrow(it):
+            pair = _split_top_level_arrow(it)
+            if pair:
+                cmp_pairs.append(pair)
+
+    if cmp_pairs:
+        old_items = [p[0] for p in cmp_pairs]
+        new_items = [p[1] for p in cmp_pairs]
+    else:
+        # 레거시 경로: ② 불릿 = 기존, ④ 불릿 (화살표 없음) = 자동화 후
+        old_items = parse_list_items(s2)
+        new_items = [it for it in items4_all if "→" not in it]
 
     # 펜타곤 플로우
     if flow_steps:
@@ -280,9 +321,14 @@ def slide_impl(name: str, s: dict) -> str:
 
     rows = ""
     for old, new in zip(old_items, new_items):
-        lbl_m = re.match(r'^([^:：]{2,8})[：:]\s*', old)
-        lbl = lbl_m.group(1).strip() if lbl_m else "비교"
-        old_s = old[:55] + ("…" if len(old) > 55 else "")
+        lbl_m = re.match(r'^([^:：]{2,10})[：:]\s*(.+)', old)
+        if lbl_m:
+            lbl = lbl_m.group(1).strip()
+            old_text = lbl_m.group(2).strip()
+        else:
+            lbl = "비교"
+            old_text = old
+        old_s = old_text[:55] + ("…" if len(old_text) > 55 else "")
         new_s = new[:55] + ("…" if len(new) > 55 else "")
         rows += f'<tr><td>{old_s}</td><td class="m-mid">{lbl}</td><td>{new_s}</td></tr>'
 

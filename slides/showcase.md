@@ -332,7 +332,7 @@ style: |
 # 현재 구현 단계
 <p class="slide-sub">자동화 전·후 비교</p>
 
-<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>온보딩 → 개별 온/오프 미팅 외에 다른 선택지 없음 (가이드 문서 전달해봤으나, 불가 확인 / 대…</td><td class="m-mid">비교</td><td>신규 온보딩 자동화: 미진행</td></tr><tr><td>고객사 상품 세일즈 기획 자동화 → 매번 새롭게 기획, 문서화, 미팅을 통해 전달</td><td class="m-mid">비교</td><td>상품 세일즈 기획 자동화: 일부 진행 중 (무료 강의안 기획부터)</td></tr><tr><td>기록 자동화: 매번 직접 기록</td><td class="m-mid">기록 자동화</td><td>기록 자동화: 아직 녹음 파일을 구글 드라이브로 자동 업로드하는 과정 해결 중</td></tr><tr><td>신규 주제 도메인 이해도: 파편화된 정보를 리서치하고 취합하는 형태</td><td class="m-mid">비교</td><td>신규 주제 학습 튜터: 미진행</td></tr></tbody></table>
+<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>온보딩 → 개별 온/오프 미팅 외에 다른 선택지 없음 (가이드 문서 전달해봤으나, 불가 확인 / 대…</td><td class="m-mid">비교</td><td>신규 온보딩 자동화: 미진행</td></tr><tr><td>고객사 상품 세일즈 기획 자동화 → 매번 새롭게 기획, 문서화, 미팅을 통해 전달</td><td class="m-mid">비교</td><td>상품 세일즈 기획 자동화: 일부 진행 중 (무료 강의안 기획부터)</td></tr><tr><td>매번 직접 기록</td><td class="m-mid">기록 자동화</td><td>기록 자동화: 아직 녹음 파일을 구글 드라이브로 자동 업로드하는 과정 해결 중</td></tr><tr><td>신규 주제 도메인 이해도: 파편화된 정보를 리서치하고 취합하는 형태</td><td class="m-mid">비교</td><td>신규 주제 학습 튜터: 미진행</td></tr></tbody></table>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
@@ -379,7 +379,7 @@ style: |
 <p class="slide-sub">자동화 전·후 비교</p>
 
 <div class="flow-wrap"><div class="flow-step"><div class="flow-num">01</div>수집</div><div class="flow-step"><div class="flow-num">02</div>필터</div><div class="flow-step"><div class="flow-num">03</div>Human</div><div class="flow-step"><div class="flow-num">04</div>Figma 플러그인</div></div>
-<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>요청 경로 파편화: Slack 2개 채널 + 개인 DM + Notion 등 4개 채널에서 각각 수동…</td><td class="m-mid">비교</td><td>디자인 진행 상황 리스트업 & 정리</td></tr><tr><td>요청 형식의 다양성: 요청자마다 요청 형식이 달라 필요한 정보를 다시 확인하거나 정리해야 했음</td><td class="m-mid">비교</td><td>수집 스케줄: 월~금 9, 10, 11, 13, 14, 15, 16, 17, 18, 19시 정각 (…</td></tr><tr><td>수동 복제 관리: 전주 Task list를 복제 → 차주 Task list로 이름, 내용 수정 → …</td><td class="m-mid">수동 복제 관리</td><td>1차, 2차 시안 공유와 같은 Work Flow 날짜 자동 계산해서 작성</td></tr><tr><td>정보 누락: 피그마, 기획안, 고객사 클래스 링크 등의 정보를 누락해서 작성</td><td class="m-mid">정보 누락</td><td>미완료 Task 자동 이월 로직</td></tr><tr><td>—</td><td class="m-mid">비교</td><td>디자인 타임라인 정리</td></tr></tbody></table>
+<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>Slack 2개 채널 + 개인 DM + Notion 등 4개 채널에서 각각 수동 확인</td><td class="m-mid">요청 경로 파편화</td><td>디자인 진행 상황 리스트업 & 정리</td></tr><tr><td>요청자마다 요청 형식이 달라 필요한 정보를 다시 확인하거나 정리해야 했음</td><td class="m-mid">요청 형식의 다양성</td><td>수집 스케줄: 월~금 9, 10, 11, 13, 14, 15, 16, 17, 18, 19시 정각 (…</td></tr><tr><td>전주 Task list를 복제 → 차주 Task list로 이름, 내용 수정 → 공유하는 반복적인 …</td><td class="m-mid">수동 복제 관리</td><td>1차, 2차 시안 공유와 같은 Work Flow 날짜 자동 계산해서 작성</td></tr><tr><td>피그마, 기획안, 고객사 클래스 링크 등의 정보를 누락해서 작성</td><td class="m-mid">정보 누락</td><td>미완료 Task 자동 이월 로직</td></tr><tr><td>—</td><td class="m-mid">비교</td><td>디자인 타임라인 정리</td></tr></tbody></table>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
@@ -405,18 +405,17 @@ style: |
 
 <div class="cover-title">Chaeeun Jang의<br>자동화 도구</div>
 <p class="cover-presenter"><strong>발표자</strong> 콘텐츠 디자이너 &nbsp;｜&nbsp; Chaeeun Jang</p>
-<div class="cover-tags"><span class="tag">1,000~2,000명 규모 수강</span><span class="tag">analyze.py — 5개 탭 결과</span></div>
+<div class="cover-tags"><span class="tag">매일 상시퍼널 클래스의 신청자 목</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
 
 # 문제와 해결 방향
-<p class="slide-sub">1,000~2,000명 규모 수강생 데이터를 매일 수동 집계 — 고객사가 늘수록 병목도 커졌습니다.</p>
+<p class="slide-sub">매일 상시퍼널 클래스의 신청자 목록을 다운받아 신청자 수·완강률·결제 전환율 등을 직접 계산</p>
 
 <div class="two-col">
-  <div class="col-l"><p class="sec-label">① 문제 상황</p><p>1,000~2,000명 규모 수강생 데이터를 매일 수동 집계 — 고객사가 늘수록 병목도 커졌습니다.</p>
-<p>매일 수강생 엑셀을 받아 신청자 수·완강률·결제 전환율 등을 직접 계산하고, 일자별·주차별·월별로 정리해 노션에 옮기는 작업을 반복해야 했습니다. 고객사가 늘수록 작업량도 늘고, 실수도 잦아졌습니다.</p><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><p>파일을 폴더에 드롭하고 "inbox 처리해줘" 한 마디면 분석·DB 기록·보고서 생성까지 자동 완료. 숫자가 아닌 인사이트에만 집중할 수 있는 구조.</p></div>
-  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>데이터 분석</td><td>함수 직접 작성, 일자별 수동 집계</td></tr><tr><td>보고서</td><td>수치 수동 복붙, 고객사별 따로 정리</td></tr><tr><td>데이터 누적</td><td>엑셀 직접 관리, 서식 매번 수동 적용</td></tr></tbody></table></div>
+  <div class="col-l"><p class="sec-label">① 문제 상황</p><ul><li>매일 상시퍼널 클래스의 신청자 목록을 다운받아 신청자 수·완강률·결제 전환율 등을 직접 계산</li><li>고객사에 공유 보고서가 필요한 경우 일자별·주차별·월별로 정리해 노션에 옮기는 작업 반복</li><li>상시퍼널을 적용하는 고객사가 빠르게 늘어남에 따라 소요 시간이 크게 늘 것으로 예상됨</li></ul><hr class="sec-divider"><p class="sec-label">③ 지향했던 방향성</p><p>파일을 폴더에 드롭하고 "inbox 처리해줘" 한 마디면 분석·DB 기록·보고서 생성까지 자동 완료. 숫자가 아닌 인사이트에만 집중할 수 있는 구조.</p></div>
+  <div class="col-r"><p class="sec-label">② 기존 방식의 병목</p><table><thead><tr><th>병목 유형</th><th>구체적 문제</th></tr></thead><tbody><tr><td>병목</td><td>매번 수동으로 카운트 및 분석 → 일자별 추적 어려움</td></tr><tr><td>병목</td><td>파트별 이탈 시각화 불가</td></tr><tr><td>병목</td><td>고객사의 이해를 도울 차트 등 시각화 어려움</td></tr><tr><td>병목</td><td>결제 전환율 매칭 — 결제자 시트와 대조하며 추적</td></tr></tbody></table></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -425,7 +424,7 @@ style: |
 # 현재 구현 단계
 <p class="slide-sub">자동화 전·후 비교</p>
 
-<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>데이터 분석: 함수 직접 작성, 일자별 수동 집계</td><td class="m-mid">데이터 분석</td><td>analyze.py — 5개 탭 결과 엑셀 자동 생성 + 결제 전환율 이메일 매칭 자동 계산</td></tr><tr><td>보고서: 수치 수동 복붙, 고객사별 따로 정리</td><td class="m-mid">보고서</td><td>Notion DB 3개 자동 기록 + 바차트 포함 보고서 페이지 자동 생성</td></tr><tr><td>데이터 누적: 엑셀 직접 관리, 서식 매번 수동 적용</td><td class="m-mid">데이터 누적</td><td>Google Sheets 5탭 누적 업데이트 + 서식 자동 적용</td></tr></tbody></table>
+<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr></tbody></table>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
@@ -434,7 +433,7 @@ style: |
 <p class="slide-sub">앞으로 발전시키고 싶은 것, 그리고 이번 캠프를 통해 달라진 것</p>
 
 <p class="sec-label">⑤ 추후 과제</p>
-<ul><li>여러 파일 동시 처리 안정성 검증</li><li>인사이트 자동 생성 고도화 — 패턴 감지 및 액션 우선순위 자동 판단</li><li>고객사 바로 공유 가능한 보고서 포맷 자동화</li></ul>
+<ul><li>여러 파일 동시 처리 안정성 검증</li><li>인사이트 자동 생성 고도화 — 패턴 감지 및 액션 우선순위 자동 판단</li></ul>
 <hr class="sec-divider">
 <p class="sec-label">⑥ 소감</p>
 <p>개발 경험 없이도 실제로 동작하는 자동화 시스템을 만들 수 있다는 게 가장 큰 발견이었습니다. 세팅을 마치고 나니 업무 효율이 크게 높아졌고, 고객사 보고서 퀄리티도 올라갔습니다. 진작 시도해볼 걸 — 앞으로는 단순 반복은 Claude에 맡기고, 나는 생각하는 일에 집중하려 합니다.</p>
