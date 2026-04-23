@@ -37,9 +37,9 @@ PRESENTER_ORDER = ["chaeeun-jang", "mjshin", "Evan", "Bryan-ji", "nova"]
 # 발표자별 직무 매핑 (name은 소문자로 비교)
 # 새 발표자 추가 시 여기에 등록하세요.
 ROLE_BY_NAME = {
-    "chaeeun jang": "그로우 매니저",
-    "mjshin":       "그로우 매니저",
-    "nova":         "그로우 매니저",
+    "chaeeun jang": "그로스 매니저",
+    "mjshin":       "그로스 매니저",
+    "nova":         "그로스 매니저",
     "evan":         "세일즈 매니저",
     "bryan-ji":     "세일즈 컨설턴트",
 }
@@ -390,13 +390,14 @@ def slide_impl(name: str, s: dict) -> str:
 
 
 def slide_impl_with_image(name: str, s: dict, img_rel_path: str) -> str:
-    """현재 구현 단계 + 오른쪽 이미지 (2열 레이아웃) — slide_img*.png 자동 생성용."""
+    """현재 구현 단계 + 오른쪽 이미지 (2열 레이아웃) — slide_img*.png 자동 생성용.
+    이미지를 크게 보여주기 위해 two-col-wide-right 클래스로 오른쪽 열을 넓힌다."""
     flow_html, cmp_html = _build_impl_content(s)
     return (
         f'# 현재 구현 단계\n'
         f'<p class="slide-sub">자동화 전·후 비교</p>\n\n'
         + flow_html
-        + f'<div class="two-col">\n'
+        + f'<div class="two-col two-col-wide-right">\n'
         + f'  <div class="col-l">{cmp_html}</div>\n'
         + f'  <div class="col-r"><img src="{img_rel_path}" style="width:100%;height:100%;object-fit:contain;"></div>\n'
         + f'</div>\n'

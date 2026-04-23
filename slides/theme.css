@@ -214,6 +214,10 @@ li { margin-bottom: 0.28em; }
 }
 .col-l, .col-r { flex: 1; display: flex; flex-direction: column; }
 
+/* 오른쪽 이미지를 크게 보여주는 2열 (chaeeun-jang 이미지 슬라이드 등) */
+.two-col-wide-right > .col-l { flex: 1; }
+.two-col-wide-right > .col-r { flex: 1.8; }
+
 /* ─── 기본 표 ────────────────────────────────── */
 table {
   width: 100%;

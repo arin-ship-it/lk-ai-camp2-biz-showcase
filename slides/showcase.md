@@ -220,6 +220,10 @@ style: |
   }
   .col-l, .col-r { flex: 1; display: flex; flex-direction: column; }
 
+  /* 오른쪽 이미지를 크게 보여주는 2열 (chaeeun-jang 이미지 슬라이드 등) */
+  .two-col-wide-right > .col-l { flex: 1; }
+  .two-col-wide-right > .col-r { flex: 1.8; }
+
   /* ─── 기본 표 ────────────────────────────────── */
   table {
     width: 100%;
@@ -363,7 +367,7 @@ style: |
 <ul><li>(X) "아, 저 사람은 저기서 AI를 썼구나"</li><li>(O) "저 사람은 <strong>일하는 방식이 이렇게 달라지고 있구나</strong>"</li></ul>
 <hr class="sec-divider">
 <p class="sec-label">오늘의 발표자 (5명)</p>
-<table class="cmp-table speakers-table"><thead><tr><th class="h-left">발표자</th><th class="h-mid">직무</th><th class="h-right">주제</th></tr></thead><tbody><tr><td><strong>Chaeeun Jang</strong></td><td class="m-mid">그로우 매니저</td><td>상시퍼널 데이터 자동화</td></tr><tr><td><strong>mjshin</strong></td><td class="m-mid">그로우 매니저</td><td>매니저 리소스 자동화</td></tr><tr><td><strong>Evan</strong></td><td class="m-mid">세일즈 매니저</td><td>신규 고객 온보딩 자동화</td></tr><tr><td><strong>Bryan-ji</strong></td><td class="m-mid">세일즈 컨설턴트</td><td>고객 컨택 리서치 & 스크립트 자동화</td></tr><tr><td><strong>Nova</strong></td><td class="m-mid">그로우 매니저</td><td>기획-콘텐츠 파이프라인</td></tr></tbody></table>
+<table class="cmp-table speakers-table"><thead><tr><th class="h-left">발표자</th><th class="h-mid">직무</th><th class="h-right">주제</th></tr></thead><tbody><tr><td><strong>Chaeeun Jang</strong></td><td class="m-mid">그로스 매니저</td><td>상시퍼널 데이터 자동화</td></tr><tr><td><strong>mjshin</strong></td><td class="m-mid">그로스 매니저</td><td>매니저 리소스 자동화</td></tr><tr><td><strong>Evan</strong></td><td class="m-mid">세일즈 매니저</td><td>신규 고객 온보딩 자동화</td></tr><tr><td><strong>Bryan-ji</strong></td><td class="m-mid">세일즈 컨설턴트</td><td>고객 컨택 리서치 & 스크립트 자동화</td></tr><tr><td><strong>Nova</strong></td><td class="m-mid">그로스 매니저</td><td>기획-콘텐츠 파이프라인</td></tr></tbody></table>
 <blockquote><p>편하게 들으시고, 끝나고 <strong>"나라면 어디에 적용할까"</strong> 하나만 챙겨 가시면 오늘 세션은 성공입니다.</p></blockquote>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -386,7 +390,7 @@ style: |
 <!-- _class: cover -->
 
 <div class="cover-title">Chaeeun Jang의<br>자동화 도구</div>
-<p class="cover-presenter"><strong>발표자</strong> 그로우 매니저 &nbsp;｜&nbsp; Chaeeun Jang</p>
+<p class="cover-presenter"><strong>발표자</strong> 그로스 매니저 &nbsp;｜&nbsp; Chaeeun Jang</p>
 <div class="cover-tags"><span class="tag">매일 상시퍼널 클래스의 신청자 목</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -406,7 +410,7 @@ style: |
 # 현재 구현 단계
 <p class="slide-sub">자동화 전·후 비교</p>
 
-<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table>
+<table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
 ---
@@ -414,8 +418,8 @@ style: |
 # 현재 구현 단계
 <p class="slide-sub">자동화 전·후 비교</p>
 
-<div class="two-col">
-  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
+<div class="two-col two-col-wide-right">
+  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
   <div class="col-r"><img src="../submissions/chaeeun-jang/slide_img1.png" style="width:100%;height:100%;object-fit:contain;"></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
@@ -425,8 +429,8 @@ style: |
 # 현재 구현 단계
 <p class="slide-sub">자동화 전·후 비교</p>
 
-<div class="two-col">
-  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
+<div class="two-col two-col-wide-right">
+  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
   <div class="col-r"><img src="../submissions/chaeeun-jang/slide_img2.png" style="width:100%;height:100%;object-fit:contain;"></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
@@ -436,8 +440,8 @@ style: |
 # 현재 구현 단계
 <p class="slide-sub">자동화 전·후 비교</p>
 
-<div class="two-col">
-  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
+<div class="two-col two-col-wide-right">
+  <div class="col-l"><table class="cmp-table"><thead><tr><th class="h-left">기존 방식</th><th class="h-mid">구분</th><th class="h-right">자동화 후</th></tr></thead><tbody><tr><td>수동 집계</td><td class="m-mid">비교</td><td>자동 분석+매칭</td></tr><tr><td>데일리 추적 불가</td><td class="m-mid">비교</td><td>Google Sheets 누적 업데이트</td></tr><tr><td>수동 복붙</td><td class="m-mid">비교</td><td>Notion 자동 기록</td></tr><tr><td>보고서 수동 제작</td><td class="m-mid">비교</td><td>Notion 보고서 자동 제작</td></tr></tbody></table></div>
   <div class="col-r"><img src="../submissions/chaeeun-jang/slide_img3.png" style="width:100%;height:100%;object-fit:contain;"></div>
 </div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
@@ -464,7 +468,7 @@ style: |
 <!-- _class: cover -->
 
 <div class="cover-title">mjshin의<br>자동화 도구</div>
-<p class="cover-presenter"><strong>발표자</strong> 그로우 매니저 &nbsp;｜&nbsp; mjshin</p>
+<p class="cover-presenter"><strong>발표자</strong> 그로스 매니저 &nbsp;｜&nbsp; mjshin</p>
 <div class="cover-tags"><span class="tag">매니저 1명이 담당 가능한 고객사</span><span class="tag">3단계 자동화 워크플로우</span><span class="tag">질문 플로우 설계: 매니저 킥오프 인</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
@@ -605,7 +609,7 @@ style: |
 <!-- _class: cover -->
 
 <div class="cover-title">Nova의<br>자동화 도구</div>
-<p class="cover-presenter"><strong>발표자</strong> 그로우 매니저 &nbsp;｜&nbsp; Nova</p>
+<p class="cover-presenter"><strong>발표자</strong> 그로스 매니저 &nbsp;｜&nbsp; Nova</p>
 <div class="cover-tags"><span class="tag">단계마다 이전 히스토리를 직접 찾</span></div>
 <span class="slide-footer">2026.04</span><span class="corner-sq"></span>
 
