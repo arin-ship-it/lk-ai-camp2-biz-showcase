@@ -316,6 +316,21 @@ def _split_top_level_arrow(text: str):
     return None
 
 
+def _extract_hero_lead(text: str) -> str:
+    """④ 섹션 상단(불릿 전)에 hero-kw 클래스를 포함한 라인이 있으면 HTML 그대로 반환.
+    opt-in: hero-kw 마커가 없으면 빈 문자열 반환 → 기본 subtitle 유지.
+    """
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if re.match(r'^[-*]\s+', stripped):
+            return ""
+        if 'hero-kw' in stripped:
+            return stripped
+    return ""
+
+
 def _build_impl_content(s: dict) -> tuple:
     """현재 구현 단계 flow_html, cmp_html 반환 (slide_impl / slide_impl_with_image 공유)."""
     s2 = s.get("②", "")
@@ -377,12 +392,20 @@ def _build_impl_content(s: dict) -> tuple:
     return flow_html, cmp_html
 
 
+def _impl_subtitle_html(s: dict) -> str:
+    """④ 섹션에 hero-kw lead 라인이 있으면 그것으로 subtitle 대체, 없으면 기본 문구."""
+    hero_lead = _extract_hero_lead(s.get("④", ""))
+    if hero_lead:
+        return f'{hero_lead}\n\n'
+    return '<p class="slide-sub">자동화 전·후 비교</p>\n\n'
+
+
 def slide_impl(name: str, s: dict) -> str:
     """현재 구현 단계: 펜타곤 플로우 + 비교표"""
     flow_html, cmp_html = _build_impl_content(s)
     return (
         f'# 현재 구현 단계\n'
-        f'<p class="slide-sub">자동화 전·후 비교</p>\n\n'
+        + _impl_subtitle_html(s)
         + flow_html
         + cmp_html + "\n"
         + FOOTER_HTML
@@ -394,7 +417,7 @@ def slide_impl_with_image(name: str, s: dict, img_rel_path: str) -> str:
     flow_html, cmp_html = _build_impl_content(s)
     return (
         f'# 현재 구현 단계\n'
-        f'<p class="slide-sub">자동화 전·후 비교</p>\n\n'
+        + _impl_subtitle_html(s)
         + flow_html
         + f'<div class="two-col">\n'
         + f'  <div class="col-l">{cmp_html}</div>\n'
